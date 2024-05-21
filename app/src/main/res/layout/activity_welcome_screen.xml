@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/dirtwhite"
     android:fontFamily="@font/concert_one"
-    tools:context=".MainActivity">
+    tools:context=".WelcomeScreen">
 
     <TextView
         android:id="@+id/welcome"

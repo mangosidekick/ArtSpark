@@ -1,11 +1,10 @@
 <resources>
-
     //welcome screen//
     <string name="app_name">Artspark</string>
     <string name="artspark">WELCOME TO ARTSPARK!</string>
     <string name="greeting">GOOD DAY FRIEND!</string>
     <string name="greeting_user">GOOD DAY</string>
-    <string name="username">USER!</string>
+    <string name="username">com.mango.artsparkxml.username</string>
     <string name="motivation_question">need a spark of motivation?</string>
     <string name="entername">"what's your name?"</string>
     <string name="proceed"> enter </string>
