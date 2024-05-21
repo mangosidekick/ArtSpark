@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,44 +12,44 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class WelcomeScreen extends AppCompatActivity {
-    private Button enterBtn;
-    private EditText enterName;
+public class WelcomeScreen extends AppCompatActivity implements View.OnClickListener {
 
-    private final String SHARED_PREF_NAME = getString(R.string.app_name);
-    private final String FIRST_START_KEY = "firstStart";
+    private android.widget.Button Button;
+    Button enterBtn = (Button);
+    private android.widget.EditText EditText;
+    EditText userName = (EditText);
+
+    private final String PREV_STARTED_KEY = "prevStarted";
     private final String USERNAME_KEY = "username";
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+
+        if (!sharedpreferences.getBoolean(PREV_STARTED_KEY, false)) {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean(PREV_STARTED_KEY, true);
+            editor.apply();
+        } else {
+            moveToSecondary();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_welcome_screen);
 
-        SharedPreferences sharedpreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        userName = findViewById(R.id.entername);
 
-        // if this is the first time running, run the enter username screen
-        if (sharedpreferences.getBoolean(FIRST_START_KEY, true)) {
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putBoolean(FIRST_START_KEY, false);
-            editor.commit();
-
-            // add setup welcome screen
-            setContentView(R.layout.activity_welcome_screen);
-
-            enterName = findViewById(R.id.entername);
-
-            enterBtn = findViewById(R.id.enterbutton);
-            enterBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        saveName();
-                    }
-                }
-            );
-        } else {
-            moveToSecondary();
-        }
+        enterBtn = findViewById(R.id.enterbutton);
+        enterBtn.setOnClickListener(this);
     }
 
     public void moveToSecondary(){
@@ -57,21 +58,45 @@ public class WelcomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void saveName() {
-        String name = enterName.getText().toString();
+    @Override
+    public void onClick(View v) {
 
-        if (name.isEmpty()) {
-            Toast.makeText(WelcomeScreen.this, "Name is required!", Toast.LENGTH_SHORT).show();
-            enterName.setError( "First name is required!" );
-            return;
+        if (v.getId() == R.id.enterbutton) {
+            if( TextUtils.isEmpty(userName.getText())) {
+                Toast.makeText(this, "Name is required!", Toast.LENGTH_SHORT).show();
+                userName.setError( "First name is required!" );
+            } else {
+                String name = userName.getText().toString();
+
+                // if username available, save it into shared preferences
+                SharedPreferences sp = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+
+                editor.putString(USERNAME_KEY, name);
+                editor.apply();
+
+                // and go to moodboard menu
+                startActivity(new Intent(WelcomeScreen.this, MoodboardMenu.class));
+            }
+        } else {
+            startActivity(new Intent(WelcomeScreen.this, MoodboardMenu.class));
+            Intent i = new Intent(getApplicationContext(), WelcomeScreen.class);
+            startActivity(i);
         }
 
-        // if username available, save it into shared preferences
-        SharedPreferences sp = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-
-        editor.putString(USERNAME_KEY, name);
-        editor.apply();
     }
+        /*if (v.getId() == R.id.enterbutton) {
+            startActivity(new Intent(WelcomeScreen.this, MoodboardMenu.class));
+
+            if( TextUtils.isEmpty(userName.getText())){
+                Toast.makeText(this, "Name is required!", Toast.LENGTH_SHORT).show();
+                userName.setError( "First name is required!" );
+
+            }else{
+                Intent i = new Intent(getApplicationContext(), WelcomeScreen.class);
+                startActivity(i);
+            }
+        }*/
+
 
 }
