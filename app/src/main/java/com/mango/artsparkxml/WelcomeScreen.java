@@ -22,15 +22,18 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
     Button enterBtn = (Button);
     private android.widget.EditText EditText;
     EditText userName = (EditText);
-    String prevStarted = "yes";
+
+    private final String PREV_STARTED_KEY = "prevStarted";
+    private final String USERNAME_KEY = "username";
 
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences sharedpreferences = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
-        if (!sharedpreferences.getBoolean(prevStarted, false)) {
+        SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+
+        if (!sharedpreferences.getBoolean(PREV_STARTED_KEY, false)) {
             SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putBoolean(prevStarted, Boolean.TRUE);
+            editor.putBoolean(PREV_STARTED_KEY, true);
             editor.apply();
         } else {
             moveToSecondary();
@@ -58,11 +61,24 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
-        if( TextUtils.isEmpty(userName.getText()) && v.getId() == R.id.enterbutton ){
-            Toast.makeText(this, "Name is required!", Toast.LENGTH_SHORT).show();
-            userName.setError( "First name is required!" );
+        if (v.getId() == R.id.enterbutton) {
+            if( TextUtils.isEmpty(userName.getText())) {
+                Toast.makeText(this, "Name is required!", Toast.LENGTH_SHORT).show();
+                userName.setError( "First name is required!" );
+            } else {
+                String name = userName.getText().toString();
 
-        }else{
+                // if username available, save it into shared preferences
+                SharedPreferences sp = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+
+                editor.putString(USERNAME_KEY, name);
+                editor.apply();
+
+                // and go to moodboard menu
+                startActivity(new Intent(WelcomeScreen.this, MoodboardMenu.class));
+            }
+        } else {
             startActivity(new Intent(WelcomeScreen.this, MoodboardMenu.class));
             Intent i = new Intent(getApplicationContext(), WelcomeScreen.class);
             startActivity(i);
