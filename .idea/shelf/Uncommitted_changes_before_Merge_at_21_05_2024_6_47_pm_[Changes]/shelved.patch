@@ -1,0 +1,30 @@
+Index: app/src/main/java/com/mango/artsparkxml/WelcomeScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mango.artsparkxml;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.os.Bundle;\r\nimport android.preference.PreferenceManager;\r\nimport android.text.TextUtils;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class WelcomeScreen extends AppCompatActivity implements View.OnClickListener {\r\n\r\n    private android.widget.EditText EditText;\r\n    private android.database.sqlite.SQLiteDatabase SQLiteDatabase;\r\n    private android.widget.Button Button;\r\n    private SharedPreferences mPreferences;\r\n    private SharedPreferences.Editor mEditor;\r\n    Button enterBtn = (Button);\r\n    EditText userName = (EditText);\r\n    SQLiteDatabase db = (SQLiteDatabase);\r\n    String prevStarted = \"yes\";\r\n\r\n\r\n    @Override\r\n    protected void onResume() {\r\n        super.onResume();\r\n        SharedPreferences sharedpreferences = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);\r\n        if (!sharedpreferences.getBoolean(prevStarted, false)) {\r\n            SharedPreferences.Editor editor = sharedpreferences.edit();\r\n            editor.putBoolean(prevStarted, Boolean.TRUE);\r\n            editor.apply();\r\n        } else {\r\n            moveToSecondary();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_welcome_screen);\r\n\r\n        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);\r\n        mEditor = mPreferences.edit();\r\n\r\n        mEditor.putString(\"key\", \"mitch\");\r\n        mEditor.commit();\r\n\r\n        userName = findViewById(R.id.entername);\r\n        enterBtn = findViewById(R.id.enterbutton);\r\n        enterBtn.setOnClickListener(this);\r\n    }\r\n\r\n    public void moveToSecondary(){\r\n        // use an intent to travel from one activity to another.\r\n        Intent intent = new Intent(this,GreetingScreen.class);\r\n        startActivity(intent);\r\n    }\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n        if( TextUtils.isEmpty(userName.getText()) && v.getId() == R.id.enterbutton ){\r\n            Toast.makeText(this, \"Name is required!\", Toast.LENGTH_SHORT).show();\r\n        }else{\r\n            String name = userName.getText().toString();\r\n            mEditor.putString(getString(R.string.username), name);\r\n            mEditor.commit();\r\n            Intent intent = new Intent(WelcomeScreen.this, MoodboardMenu.class);\r\n            startActivity(intent);\r\n        }\r\n\r\n\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/mango/artsparkxml/WelcomeScreen.java b/app/src/main/java/com/mango/artsparkxml/WelcomeScreen.java
+--- a/app/src/main/java/com/mango/artsparkxml/WelcomeScreen.java	(revision a8e0a7eafcab6dc702d0cae046c9936228fa1ab7)
++++ b/app/src/main/java/com/mango/artsparkxml/WelcomeScreen.java	(date 1716288433062)
+@@ -69,17 +69,14 @@
+ 
+     @Override
+     public void onClick(View v) {
++
+         if( TextUtils.isEmpty(userName.getText()) && v.getId() == R.id.enterbutton ){
+             Toast.makeText(this, "Name is required!", Toast.LENGTH_SHORT).show();
++
+         }else{
+-            String name = userName.getText().toString();
+-            mEditor.putString(getString(R.string.username), name);
+-            mEditor.commit();
+             Intent intent = new Intent(WelcomeScreen.this, MoodboardMenu.class);
+             startActivity(intent);
+         }
+-
+-
+     }
+ 
+ 

@@ -16,6 +16,17 @@
         >
     </View>
 
+    <GridView
+        android:id="@+id/card_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/upperNavBar"
+        android:layout_marginTop="-1dp"
+        android:columnWidth="15dp"
+        android:horizontalSpacing="3dp"
+        android:numColumns="3">
+    </GridView>
+
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="50sp"
