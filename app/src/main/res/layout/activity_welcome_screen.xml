@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/welcomescreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dirtwhite"
+    android:fontFamily="@font/concert_one"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:text="@string/artspark"
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginBottom="10sp"/>
+
+    <TextView
+        android:id="@+id/greeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:text="@string/greeting"
+        android:textColor="@color/green"
+        android:textSize="40sp"
+        android:layout_marginTop="20sp"
+        />
+
+    <TextView
+        android:id="@+id/motivation_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/greeting"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:text="@string/motivation_question"
+        android:textColor="@color/green"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/entername"
+        android:layout_marginTop="50sp"
+        android:layout_width="190sp"
+        android:layout_height="50sp"
+        android:hint="@string/entername"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:layout_below="@id/motivation_question"
+        android:inputType="text"
+        android:textColorHint="@color/yellow"
+        android:background="@drawable/border"
+        />
+
+    <Button
+        android:id="@+id/enterbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20sp"
+        android:text="@string/proceed"
+        android:fontFamily="@font/concert_one"
+        android:textSize="20sp"
+        android:textColor="@color/dirtwhite"
+        android:backgroundTint="@color/orange"
+
+        />
+
+    <ImageView
+        android:id="@+id/mascot"
+        android:layout_width="410dp"
+        android:layout_height="335dp"
+        app:srcCompat="@drawable/artspark_mascot"
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>
+
+

@@ -1,0 +1,31 @@
+<resources>
+
+    //welcome screen//
+    <string name="app_name">Artspark</string>
+    <string name="artspark">WELCOME TO ARTSPARK!</string>
+    <string name="greeting">GOOD DAY FRIEND!</string>
+    <string name="greeting_user">GOOD DAY</string>
+    <string name="username">USER!</string>
+    <string name="motivation_question">need a spark of motivation?</string>
+    <string name="entername">"what's your name?"</string>
+    <string name="proceed"> enter </string>
+    <string name="quote"> "The destination is not everything, so before you reach the end, keep your eyes open. Use the chance to take in the world around you." -Venti </string>
+
+    //calendar//
+    <string name="task"> do this task later yippee </string>
+    <string name="icon">icon</string>
+
+    //moodboard//
+    <string name="boardsnavbartitle">BOARDS</string>
+    <string name="boardnumber1">Board 1</string>
+    <string name="boardnumber2">Board 2</string>
+    <string name="boardnumber3">Board 3</string>
+    <string name="boardnumber4">Board 4</string>
+    <string name="boardnumber5">Board 5</string>
+    <string name="boardnumber6">Board 6</string>
+    <string name="boardnumber7">Board 7</string>
+    <string name="boardnumber8">Board 8</string>
+    <string name="boardnumber9">Board 9</string>
+
+
+</resources>
