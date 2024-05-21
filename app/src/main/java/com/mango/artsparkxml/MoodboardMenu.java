@@ -24,6 +24,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     GridView gridView;
     MyCardAdapter adapter;
     List<CardItem> cardList;
+    int idCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,17 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_moodboard_menu);
 
+        // very crude. should count the actual size of saved moodboards.
+        idCounter = 1;
+
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
         gridView = findViewById(R.id.card_list);
-        cardList = new ArrayList<>();
+
+        // should be loading moodboard from storage (Databases, or etc)
+        cardList = loadMoodboards();
+
         adapter = new MyCardAdapter(this, cardList);  // Initialize the adapter
         gridView.setAdapter(adapter);
 
@@ -49,8 +56,13 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     }
 
     private void addNewCard() {
-        cardList.add(new CardItem("New Card Text"));
+        cardList.add(new CardItem("MOODBOARD_" + idCounter, "Moodboard " + idCounter));
+        idCounter++;
         adapter.notifyDataSetChanged();
+    }
+
+    private List<CardItem> loadMoodboards() {
+        return new ArrayList<>(); // Replace with actual data loading
     }
 
     @Override
