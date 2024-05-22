@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -13,10 +14,17 @@ public class MyCardAdapter extends BaseAdapter {
 
     private Context context;
     private List<CardItem> cardList;
+    private AdapterView.OnItemClickListener listener;
 
     public MyCardAdapter(Context context, List<CardItem> cardList) {
         this.context = context;
         this.cardList = cardList;
+    }
+
+    public MyCardAdapter(Context context, List<CardItem> cardList, AdapterView.OnItemClickListener listener) {
+        this.context = context;
+        this.cardList = cardList;
+        this.listener = listener;
     }
 
     @Override
@@ -42,8 +50,9 @@ public class MyCardAdapter extends BaseAdapter {
 
         TextView textView = convertView.findViewById(R.id.boardText1);
         CardItem cardItem = cardList.get(position);
-        textView.setText(cardItem.getText());
+        textView.setText(cardItem.getTitle());
 
         return convertView;
     }
+
 }
