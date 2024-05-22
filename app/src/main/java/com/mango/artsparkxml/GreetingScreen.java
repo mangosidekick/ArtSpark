@@ -14,10 +14,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Random;
+
 public class GreetingScreen extends AppCompatActivity implements View.OnClickListener {
 
     private Button BtnEnter;
     private TextView userText;
+    private TextView quote;
 
     private final String USERNAME_KEY = "username";
 
@@ -27,6 +30,9 @@ public class GreetingScreen extends AppCompatActivity implements View.OnClickLis
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_greeting_screen);
 
+        Random random = new Random();
+        int randomNumber = random.nextInt(16);
+
         // set user as the saved username
         SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
         String name = sharedpreferences.getString(USERNAME_KEY, "user");
@@ -34,8 +40,13 @@ public class GreetingScreen extends AppCompatActivity implements View.OnClickLis
         userText = findViewById(R.id.username);
         userText.setText(name);
 
+        quote = findViewById(R.id.quote);
+        quote.setText();
+
         BtnEnter = findViewById(R.id.enterbutton);
         BtnEnter.setOnClickListener(this);
+
+
     }
 
     public void onClick(View v) {

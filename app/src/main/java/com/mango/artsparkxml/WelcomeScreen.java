@@ -85,18 +85,4 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
         }
 
     }
-        /*if (v.getId() == R.id.enterbutton) {
-            startActivity(new Intent(WelcomeScreen.this, MoodboardMenu.class));
-
-            if( TextUtils.isEmpty(userName.getText())){
-                Toast.makeText(this, "Name is required!", Toast.LENGTH_SHORT).show();
-                userName.setError( "First name is required!" );
-
-            }else{
-                Intent i = new Intent(getApplicationContext(), WelcomeScreen.class);
-                startActivity(i);
-            }
-        }*/
-
-
 }
