@@ -64,9 +64,77 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="40sp"
-        android:layout_marginBottom="65sp"
+        android:layout_marginBottom="100sp"
         android:contentDescription="@string/icon"
         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_above="@id/bottomBar"
+        android:background="@drawable/shadow"/> <!--shadow-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dirtwhite"
+        app:compatShadowEnabled="true"
+        android:padding="10sp"
+        android:layout_below="@id/toDo"
+
+        >
+
+        <ImageButton
+            android:id="@+id/artSparkBurgerIcon"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            app:srcCompat="@drawable/artspark_burger_icon"
+            android:contentDescription="@string/icon"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+
+            />
+
+        <ImageButton
+            android:id="@+id/artSparkMoodBoardIcon"
+            android:layout_width="62sp"
+            android:layout_height="62sp"
+            app:srcCompat="@drawable/artspark_moodboard_icon"
+            android:layout_marginStart="110sp"
+            android:contentDescription="@string/icon"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+
+
+            />
+
+        <ImageButton
+            android:id="@+id/artSparkCalendarIcon"
+            android:layout_width="60sp"
+            android:layout_height="62sp"
+            app:srcCompat="@drawable/artspark_calendar_icon"
+            android:layout_marginStart="220sp"
+            android:contentDescription="@string/icon"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+
+            />
+
+        <ImageButton
+            android:id="@+id/artSparkYouIcon"
+            android:layout_width="63sp"
+            android:layout_height="64sp"
+            app:srcCompat="@drawable/artspark_you_icon"
+            android:layout_marginStart="330sp"
+            android:contentDescription="@string/icon"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+
+            />
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </RelativeLayout>
