@@ -13,8 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="70sp"
         android:background="@color/yellow"
-        >
-    </View>
+        />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        android:layout_marginTop="10sp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/icon"
+        />
 
     <GridView
         android:id="@+id/card_list"
@@ -29,17 +38,9 @@
         android:numColumns="3"
         android:scrollbars="none"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
-
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        app:srcCompat="?attr/actionModeCloseDrawable"
-        android:layout_marginTop="10sp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/icon"
-        />
+        android:verticalSpacing="10dp"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/boards"
@@ -67,6 +68,5 @@
         android:layout_marginBottom="65sp"
         android:contentDescription="@string/icon"
         />
-
 
 </RelativeLayout>

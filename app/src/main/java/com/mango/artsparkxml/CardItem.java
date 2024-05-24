@@ -1,5 +1,6 @@
 package com.mango.artsparkxml;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardItem {
@@ -10,6 +11,7 @@ public class CardItem {
     public CardItem(String id, String title) {
         this.id = id;
         this.title = title;
+        this.images = new ArrayList<>();
     }
 
     public String getId() {
@@ -44,6 +46,17 @@ public class CardItem {
         private String uri;
         private float x;
         private float y;
-        private float scale;
+        private float scaleX;
+        private float scaleY;
+
+        public Image(String uri, float x, float y, float scaleX, float scaleY) {
+            this.uri = uri;
+            this.x = x;
+            this.y = y;
+            this.scaleX = scaleX;
+            this.scaleY = scaleY;
+        }
+
+        // Getters and setters
     }
 }

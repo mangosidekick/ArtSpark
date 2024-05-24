@@ -7,8 +7,9 @@
     android:layout_margin="15sp"
     android:backgroundTint="@color/white"
     android:orientation="horizontal"
+    app:cardCornerRadius="20dp"
     android:clickable="true"
-    app:cardCornerRadius="20dp">
+    android:focusable="true">
 
     <TextView
         android:id="@+id/boardText1"
