@@ -8,16 +8,24 @@
     android:backgroundTint="@color/white"
     android:orientation="horizontal"
     app:cardCornerRadius="20dp"
-    android:clickable="true"
-    android:focusable="true">
+    android:clickable="false"
+    android:focusable="false">
 
-    <TextView
-        android:id="@+id/boardText1"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="10sp"
-        android:fontFamily="@font/concert_one"
-        android:textColor="@color/green"
-        android:textSize="15sp" />
+        android:descendantFocusability="blocksDescendants">
+
+        <!-- Add ImageView for thumbnail of the board -->
+
+        <TextView
+            android:id="@+id/boardText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="10sp"
+            android:fontFamily="@font/concert_one"
+            android:textColor="@color/green"
+            android:textSize="15sp" />
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
