@@ -65,8 +65,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="40sp"
-        android:layout_marginBottom="65sp"
+        android:layout_marginBottom="100sp"
         android:contentDescription="@string/icon"
         />
+
 
 </RelativeLayout>

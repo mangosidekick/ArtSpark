@@ -75,7 +75,7 @@
         android:background="@drawable/border"
         android:fontFamily="@font/concert_one"
         android:padding="20sp"
-        android:text="@string/quote"
+        android:text="@string/quote1"
         android:textAlignment="center"
         android:textColor="@color/orange"
         android:textColorHint="@color/yellow"

@@ -8,7 +8,23 @@
     <string name="motivation_question">need a spark of motivation?</string>
     <string name="entername">"what's your name?"</string>
     <string name="proceed"> enter </string>
-    <string name="quote"> "The destination is not everything, so before you reach the end, keep your eyes open. Use the chance to take in the world around you." -Venti </string>
+
+    //quotes//
+    <string name="quote1"> "The destination is not everything, so before you reach the end, keep your eyes open. Use the chance to take in the world around you." -Venti </string>
+    <string name="quote2"> "Nothing is impossible. The word itself says 'I'm possible!'" — Audrey Hepburn </string>
+    <string name="quote3"> "Keep your face always toward the sunshine, and shadows will fall behind you." — Walt Whitman </string>
+    <string name="quote4"> "All our dreams can come true, if we have the courage to pursue them." — Walt Disney</string>
+    <string name="quote5"> "Don't sit down and wait for the opportunities to come. Get up and make them." — Madam C.J. Walker</string>
+    <string name="quote6"> "You are never too old to set another goal or to dream a new dream." — C.S. Lewis </string>
+    <string name="quote7"> "Just don't give up trying to do what you really want to do. Where there is love and inspiration, I don't think you can go wrong." — Ella Fitzgerald </string>
+    <string name="quote8"> "All dreams are within reach. All you have to do is keep moving towards them." — Viola Davis </string>
+    <string name="quote9">  "A problem is a chance for you to do your best." — Duke Ellington</string>
+    <string name="quote10">  "It’s a toxic desire to try to be perfect. I realized later in life that the challenge is not to be perfect. It’s to be whole." — Jane Fonda</string>
+    <string name="quote11"> "If you prioritize yourself, you are going to save yourself." — Gabrielle Union </string>
+    <string name="quote12">  "Optimism is a happiness magnet. If you stay positive, good things and good people will be drawn to you." — Mary Lou Retton</string>
+    <string name="quote13">  "When you have a dream, you've got to grab it and never let go." — Carol Burnett</string>
+    <string name="quote14">  "When you put love out in the world it travels, and it can touch people and reach people in ways that we never even expected." — Laverne Cox</string>
+    <string name="quote15">  "It always seems impossible until it's done." — Nelson Mandela</string>
 
     //calendar//
     <string name="task"> do this task later yippee </string>
