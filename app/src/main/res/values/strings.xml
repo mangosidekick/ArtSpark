@@ -42,5 +42,8 @@
     <string name="boardnumber8">Board 8</string>
     <string name="boardnumber9">Board 9</string>
 
-
+    //tasks screen//
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">Tasks</string>
 </resources>

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Artspark"
         tools:targetApi="31">
         <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserInfo"
             android:exported="false" />
         <activity
@@ -27,12 +30,12 @@
         <activity
             android:name=".GreetingScreen"
             android:exported="true" />
-
         <activity
             android:name=".WelcomeScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
