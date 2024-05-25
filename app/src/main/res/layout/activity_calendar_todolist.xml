@@ -17,7 +17,22 @@
         android:layout_marginBottom="5sp"
         />
 
-    <!--shadow-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasksRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:nestedScrollingEnabled="true"/>
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:contentDescription="add button"
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="32dp"
+        android:backgroundTint="@color/orange"
+        android:src="@drawable/baseline_add"/>
 </RelativeLayout>

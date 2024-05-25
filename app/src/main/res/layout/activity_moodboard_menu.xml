@@ -56,17 +56,15 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:contentDescription="add button"
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_add"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="40sp"
-        android:layout_marginBottom="100sp"
-        android:contentDescription="@string/icon"
-        />
+        android:layout_alignParentEnd="true"
+        android:layout_margin="32dp"
+        android:backgroundTint="@color/orange"
+        android:src="@drawable/baseline_add"/>
 
 
 
