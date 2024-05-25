@@ -5,9 +5,39 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="50sp"
     android:background="@color/dirtwhite"
-    tools:context=".CalendarTodolist">
+    tools:context=".CalendarToDoList">
 
+    <View
+        android:id="@+id/upperNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:background="@color/yellow"
+        />
+
+    <TextView
+        android:id="@+id/menuTitleTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:text="@string/tasksnavbartitle"
+        android:layout_marginTop="20sp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:textSize="25sp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/dirtwhite"
+        />
+    <ImageButton
+        android:id="@+id/backButtonCalendar"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        android:layout_marginTop="10sp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/icon"
+        android:onClick="onClick"
+        />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -15,6 +45,7 @@
         android:layout_height="320sp"
         android:background="@drawable/artspark_calendar"
         android:layout_marginBottom="5sp"
+        android:layout_below="@id/upperNavBar"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -27,7 +58,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:contentDescription="add button"
-        android:id="@+id/addButton"
+        android:id="@+id/addTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

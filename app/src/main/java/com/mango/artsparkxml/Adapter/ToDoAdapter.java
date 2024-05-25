@@ -7,7 +7,7 @@ import android.widget.CheckBox;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mango.artsparkxml.CalendarTodolist;
+import com.mango.artsparkxml.CalendarToDoList;
 import com.mango.artsparkxml.Model.ToDoModel;
 import com.mango.artsparkxml.R;
 
@@ -16,13 +16,13 @@ import java.util.List;
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     private List<ToDoModel> todoList;
-    private CalendarTodolist activity;
+    private CalendarToDoList activity;
 
-    public ToDoAdapter(CalendarTodolist activity) {
+    public ToDoAdapter(CalendarToDoList activity){
         this.activity = activity;
     }
 
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
         return new ViewHolder(itemView);
     }
@@ -33,7 +33,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         holder.task.setChecked(toBoolean(item.getStatus()));
     }
 
-    public int getItemCount(){
+    public int getItemCount() {
         return todoList.size();
     }
 
@@ -48,7 +48,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox task;
-
         ViewHolder(View view){
             super(view);
             task = view.findViewById(R.id.todoCheckBox);

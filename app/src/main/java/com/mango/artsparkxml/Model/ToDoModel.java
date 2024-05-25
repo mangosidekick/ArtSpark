@@ -1,6 +1,6 @@
 package com.mango.artsparkxml.Model;
 
-public class ToDoModel {
+public class ToDoModel{
     private int id, status;
     private String task;
 

@@ -13,8 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="70sp"
         android:background="@color/yellow"
-        >
-    </View>
+        />
+
+    <TextView
+        android:id="@+id/menuTitleBoards"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:text="@string/boardsnavbartitle"
+        android:layout_marginTop="20sp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:textSize="25sp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/dirtwhite"
+        />
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        android:layout_marginTop="10sp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/icon"
+        />
 
     <GridView
         android:id="@+id/card_list"
@@ -30,30 +51,6 @@
         android:scrollbars="none"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp" />
-
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        app:srcCompat="?attr/actionModeCloseDrawable"
-        android:layout_marginTop="10sp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/icon"
-        />
-
-    <TextView
-        android:id="@+id/boards"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:text="@string/boardsnavbartitle"
-        android:layout_marginTop="20sp"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/concert_one"
-        android:textSize="25sp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/dirtwhite"
-        />
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:contentDescription="add button"

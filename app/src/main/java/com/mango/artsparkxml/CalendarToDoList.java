@@ -7,9 +7,6 @@ import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,20 +16,24 @@ import com.mango.artsparkxml.Model.ToDoModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalendarTodolist extends AppCompatActivity implements View.OnClickListener {
-
+public class CalendarToDoList extends AppCompatActivity implements View.OnClickListener {
+    ImageButton backButton;
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
 
     private List<ToDoModel> taskList;
-    ImageButton artSparkBurgerIcon, artSparkMoodBoardIcon, artSparkCalendarIcon, artSparkYouIcon;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar_todolist);
-        getSupportActionBar().hide();
+        getSupportActionBar();
+
+        backButton = findViewById(R.id.backButtonCalendar);
+        backButton.setOnClickListener(this);
+
+        //the lists chuchu
 
         taskList = new ArrayList<>();
 
@@ -51,12 +52,17 @@ public class CalendarTodolist extends AppCompatActivity implements View.OnClickL
         taskList.add(task);
         taskList.add(task);
         taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
+        taskList.add(task);
 
         tasksAdapter.setTasks(taskList);
     }
 
-    @Override
     public void onClick(View v) {
-
+        if (v.getId() == R.id.backButtonCalendar) {
+            startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
+        }
     }
 }

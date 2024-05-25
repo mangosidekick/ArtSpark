@@ -19,7 +19,7 @@
             android:name=".MoodboardMenu"
             android:exported="true" />
         <activity
-            android:name=".CalendarTodolist"
+            android:name=".CalendarToDoList"
             android:exported="true" />
         <activity
             android:name=".Moodboard1"

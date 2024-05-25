@@ -20,7 +20,6 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     CardView card_item;
     ImageButton backButton;
     FloatingActionButton addButton;
-    DatabaseHandler db;
     GridView gridView;
     MyCardAdapter adapter;
     List<CardItem> cardList;
@@ -68,7 +67,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.backButton) {
-            finish();
+            startActivity(new Intent(MoodboardMenu.this, GreetingScreen.class));
         }
     }
 }
