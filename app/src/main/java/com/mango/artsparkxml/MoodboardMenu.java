@@ -43,18 +43,6 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
-        artSparkBurgerIcon = findViewById(R.id.artSparkBurgerIcon);
-        artSparkBurgerIcon.setOnClickListener(this);
-
-        artSparkMoodBoardIcon = findViewById(R.id.artSparkMoodBoardIcon);
-        artSparkMoodBoardIcon.setOnClickListener(this);
-
-        artSparkCalendarIcon = findViewById(R.id.artSparkCalendarIcon);
-        artSparkCalendarIcon.setOnClickListener(this);
-
-        artSparkYouIcon = findViewById(R.id.artSparkYouIcon);
-        artSparkYouIcon.setOnClickListener(this);
-
         gridView = findViewById(R.id.card_list);
 
         // should be loading moodboard from storage (Databases, or etc)
