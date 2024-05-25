@@ -21,7 +21,6 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
 
     private android.widget.ImageButton ImageButton;
     ImageButton btnBack = (ImageButton);
-    TextView moodboardTitle;
 
     CardItem cardItem;
     String moodboardId;
@@ -37,7 +36,6 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
 
         // Instantiate
         btnBack = findViewById(R.id.backButton);
-        moodboardTitle = findViewById(R.id.moodboardTitle);
 
         // Fetch data that is passed from Moodboard Menu
         Intent intent = getIntent();
@@ -46,10 +44,6 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
 
         Log.d("Moodboard1", "Received MOODBOARD_ID: " + moodboardId);
 
-        if (moodboardId != null) {
-            moodboardTitle.setText(title);
-            cardItem = loadMoodboardById(moodboardId);
-        }
 
         // Initialize your canvas and other UI elements to display and edit the moodboard
         // For example:
