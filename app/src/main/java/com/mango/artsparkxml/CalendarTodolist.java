@@ -21,29 +21,10 @@ public class CalendarTodolist extends AppCompatActivity implements View.OnClickL
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar_todolist);
 
-        artSparkBurgerIcon = findViewById(R.id.artSparkBurgerIcon);
-        artSparkBurgerIcon.setOnClickListener(this);
-
-        artSparkMoodBoardIcon = findViewById(R.id.artSparkMoodBoardIcon);
-        artSparkMoodBoardIcon.setOnClickListener(this);
-
-        artSparkCalendarIcon = findViewById(R.id.artSparkCalendarIcon);
-        artSparkCalendarIcon.setOnClickListener(this);
-
-        artSparkYouIcon = findViewById(R.id.artSparkYouIcon);
-        artSparkYouIcon.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.artSparkBurgerIcon){
-            finish();
-        }else if (v.getId() == R.id.artSparkMoodBoardIcon){
-            startActivity(new Intent(CalendarTodolist.this, MoodboardMenu.class));
-        }else if (v.getId() == R.id.artSparkCalendarIcon){
-            startActivity(new Intent(CalendarTodolist.this, CalendarTodolist.class));
-        }else if (v.getId() == R.id.artSparkYouIcon){
-            finish();
-        }
+
     }
 }
