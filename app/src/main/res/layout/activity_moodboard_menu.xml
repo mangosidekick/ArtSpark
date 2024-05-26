@@ -27,6 +27,7 @@
         android:gravity="center_horizontal"
         android:textColor="@color/dirtwhite"
         />
+
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="50sp"
@@ -82,8 +83,5 @@
         app:itemRippleColor="@color/lime"
         app:itemTextColor="@color/green"
         app:menu="@menu/bottom_navmenu" />
-
-
-
 
 </RelativeLayout>

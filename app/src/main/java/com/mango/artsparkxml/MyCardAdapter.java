@@ -14,7 +14,6 @@ public class MyCardAdapter extends BaseAdapter {
 
     private Context context;
     private List<CardItem> cardList;
-    private AdapterView.OnItemClickListener listener;
 
     public MyCardAdapter(Context context, List<CardItem> cardList) {
         this.context = context;
@@ -24,7 +23,6 @@ public class MyCardAdapter extends BaseAdapter {
     public MyCardAdapter(Context context, List<CardItem> cardList, AdapterView.OnItemClickListener listener) {
         this.context = context;
         this.cardList = cardList;
-        this.listener = listener;
     }
 
     @Override
