@@ -41,12 +41,13 @@
 
     <CalendarView
         android:id="@+id/calendarView"
+        android:layout_below="@id/upperNavBar"
         android:layout_width="match_parent"
         android:layout_height="320sp"
+        android:theme="@style/CalenderViewCustom"
+        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
         android:background="@drawable/artspark_calendar"
-        android:layout_marginBottom="5sp"
-        android:layout_below="@id/upperNavBar"
-        />
+         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
