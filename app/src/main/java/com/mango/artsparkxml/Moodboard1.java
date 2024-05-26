@@ -5,15 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.gson.Gson;
 
@@ -21,6 +17,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
 
     private android.widget.ImageButton ImageButton;
     ImageButton btnBack = (ImageButton);
+    TextView moodboardTitle;
 
     CardItem cardItem;
     String moodboardId;
@@ -36,6 +33,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
 
         // Instantiate
         btnBack = findViewById(R.id.backButton);
+        moodboardTitle = findViewById(R.id.moodboardTitle);
 
         // Fetch data that is passed from Moodboard Menu
         Intent intent = getIntent();
@@ -43,12 +41,20 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         title = intent.getStringExtra("moodboardTitle");
 
         Log.d("Moodboard1", "Received MOODBOARD_ID: " + moodboardId);
-
+        Log.d("Moodboard1", "Received MOODBOARD_TITLE: " + title);
 
         // Initialize your canvas and other UI elements to display and edit the moodboard
         // For example:
         // CanvasView canvasView = findViewById(R.id.canvasView);
         // canvasView.setMoodboard(moodboard);
+        if (moodboardId != null) {
+            cardItem = loadMoodboardById(moodboardId);
+            // Somehow it's not showing in Fayya's phone
+            moodboardTitle.setText(cardItem.getTitle());
+
+            Log.d("Moodboard1", "Loaded MOODBOARD_ID: " + cardItem.getId());
+            Log.d("Moodboard1", "Loaded MOODBOARD_TITLE: " + cardItem.getTitle());
+        }
 
         // Set Click Listener
         btnBack.setOnClickListener(this);

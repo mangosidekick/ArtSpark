@@ -46,7 +46,10 @@ public class MyCardAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.boards, parent, false);
         }
 
+        TextView textView = convertView.findViewById(R.id.boardText1);
         CardItem cardItem = cardList.get(position);
+        textView.setText(cardItem.getTitle());
+
         return convertView;
     }
 

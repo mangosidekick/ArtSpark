@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -13,12 +12,13 @@ import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -53,14 +53,6 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
         adapter = new MyCardAdapter(this, cardList);  // Initialize the adapter
         gridView.setAdapter(adapter);
-
-        gridView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.d("HomeActivity", "GridView touched");
-                return false;
-            }
-        });
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -102,12 +94,25 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         Log.d("MoodboardMenu", "MOODBOARD SIZE LOAD: " + moodboards.size());
         Log.d("MoodboardMenu", "MOODBOARD SIZE LOAD: " + moodboards);
 
+        // Temporary when using SharedPreferences: order is not guaranteed.
+        Collections.sort(moodboards, new Comparator<CardItem>() {
+            @Override
+            public int compare(CardItem cardItem, CardItem t1) {
+                String titleT0 = cardItem.getTitle().split(" ")[1];
+                String titleT1 = t1.getTitle().split(" ")[1];
+
+                return Integer.parseInt(titleT0) - Integer.parseInt(titleT1);
+            }
+        });
+
         return moodboards;
     }
 
     private void addNewBoard() {
         String newBoardId = UUID.randomUUID().toString();
-        CardItem newCardItem = new CardItem(newBoardId, "New Moodboard");
+        int newBoardTitleCounter = cardList.size() + 1;
+
+        CardItem newCardItem = new CardItem(newBoardId, "Moodboard " + newBoardTitleCounter);
 
         // Add the new moodboard to the list
         cardList.add(newCardItem);
