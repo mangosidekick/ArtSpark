@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Home"
+    <item android:title="@string/home_menuitem"
+        android:id="@+id/home_menu"
         android:icon="@drawable/artspark_you_icon"
+        app:showAsAction="never"
         />
-    <item android:title="Boards"
+    <item android:title="@string/board_menuitem"
+        android:id="@+id/board_menu"
         android:icon="@drawable/artspark_moodboard_icon"
+        app:showAsAction="never"
         />
-    <item android:title="Tasks"
+    <item android:title="@string/tasks_menuitem"
+        android:id="@+id/tasks_menu"
         android:icon="@drawable/artspark_calendar_icon"
+        app:showAsAction="never"
         />
 
 

@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="50sp"
     android:background="@color/dirtwhite"
     tools:context=".CalendarToDoList">
 
@@ -62,9 +61,30 @@
         android:id="@+id/addTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/bottomNavigationView"
         android:layout_alignParentEnd="true"
         android:layout_margin="32dp"
         android:backgroundTint="@color/orange"
         android:src="@drawable/baseline_add"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_above="@id/bottomNavigationView"
+        android:background="@drawable/shadow"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dirtwhite"
+        android:foregroundTint="@color/lime"
+        app:itemIconTint="@color/green"
+        app:itemRippleColor="@color/lime"
+        app:itemTextColor="@color/green"
+        android:onClick="onClick"
+        app:menu="@menu/bottom_navmenu" />
 </RelativeLayout>

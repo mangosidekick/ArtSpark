@@ -45,4 +45,10 @@
     <string name="boardnumber8">Board 8</string>
     <string name="boardnumber9">Board 9</string>
 
+    //menu items//
+    <string name="home_menuitem">Home</string>
+    <string name="board_menuitem">Boards</string>
+    <string name="tasks_menuitem">Tasks</string>
+
+
 </resources>

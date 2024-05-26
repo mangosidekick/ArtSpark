@@ -1,17 +1,22 @@
 package com.mango.artsparkxml;
 
+import static com.mango.artsparkxml.R.id.bottomNavigationView;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mango.artsparkxml.Adapter.ToDoAdapter;
 import com.mango.artsparkxml.Model.ToDoModel;
@@ -54,6 +59,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
 
         addTasks = findViewById(R.id.addTasks);
 
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
@@ -65,6 +71,26 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.home_menu) {
+                    startActivity(new Intent(CalendarToDoList.this, GreetingScreen.class));
+                }
+                else if (itemId == R.id.board_menu) {
+                    startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
+                }
+                else if (itemId == R.id.tasks_menu) {
+                    startActivity(new Intent(CalendarToDoList.this, CalendarToDoList.class));
+                }
+
+                return false;
             }
         });
     }

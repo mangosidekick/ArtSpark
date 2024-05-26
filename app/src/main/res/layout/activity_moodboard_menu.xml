@@ -82,6 +82,7 @@
         app:itemIconTint="@color/green"
         app:itemRippleColor="@color/lime"
         app:itemTextColor="@color/green"
+        android:onClick="onClick"
         app:menu="@menu/bottom_navmenu" />
 
 </RelativeLayout>
