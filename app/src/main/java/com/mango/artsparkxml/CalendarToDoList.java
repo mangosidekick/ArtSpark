@@ -76,18 +76,23 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
+        bottomNavigationView.setSelectedItemId(R.id.tasks_menu);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
+
                 if (itemId == R.id.home_menu) {
                     startActivity(new Intent(CalendarToDoList.this, GreetingScreen.class));
+                    return true;
                 }
                 else if (itemId == R.id.board_menu) {
                     startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
+                    return true;
                 }
                 else if (itemId == R.id.tasks_menu) {
-                    startActivity(new Intent(CalendarToDoList.this, CalendarToDoList.class));
+                    return true;
                 }
 
                 return false;

@@ -5,17 +5,14 @@
     <item android:title="@string/home_menuitem"
         android:id="@+id/home_menu"
         android:icon="@drawable/artspark_you_icon"
-        app:showAsAction="never"
         />
     <item android:title="@string/board_menuitem"
         android:id="@+id/board_menu"
         android:icon="@drawable/artspark_moodboard_icon"
-        app:showAsAction="never"
         />
     <item android:title="@string/tasks_menuitem"
         android:id="@+id/tasks_menu"
         android:icon="@drawable/artspark_calendar_icon"
-        app:showAsAction="never"
         />
 
 

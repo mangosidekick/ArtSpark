@@ -33,7 +33,6 @@ import java.util.UUID;
 
 public class MoodboardMenu extends AppCompatActivity implements View.OnClickListener {
 
-    MenuItem home_menu, tasks_menu, board_menu;
     ImageButton backButton;
     FloatingActionButton addButton;
     GridView gridView;
@@ -51,18 +50,23 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
+        bottomNavigationView.setSelectedItemId(R.id.board_menu);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
+
                 if (itemId == R.id.home_menu) {
                     startActivity(new Intent(MoodboardMenu.this, GreetingScreen.class));
+                    return true;
                 }
                 else if (itemId == R.id.board_menu) {
-                    startActivity(new Intent(MoodboardMenu.this, MoodboardMenu.class));
+                    return true;
                 }
                 else if (itemId == R.id.tasks_menu) {
                     startActivity(new Intent(MoodboardMenu.this, CalendarToDoList.class));
+                    return true;
                 }
 
                 return false;

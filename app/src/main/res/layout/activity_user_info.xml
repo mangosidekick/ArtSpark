@@ -8,6 +8,7 @@
     android:background="@color/dirtwhite"
     tools:context=".UserInfo">
 
+    <!--
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
@@ -67,7 +68,7 @@
             />
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
+    -->
 
 
 </RelativeLayout>
