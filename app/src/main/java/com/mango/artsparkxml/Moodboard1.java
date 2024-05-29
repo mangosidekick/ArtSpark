@@ -49,8 +49,9 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         // canvasView.setMoodboard(moodboard);
         if (moodboardId != null) {
             cardItem = loadMoodboardById(moodboardId);
-            // Somehow it's not showing in Fayya's phone
             moodboardTitle.setText(cardItem.getTitle());
+
+            // set the image as the thumbnail
 
             Log.d("Moodboard1", "Loaded MOODBOARD_ID: " + cardItem.getId());
             Log.d("Moodboard1", "Loaded MOODBOARD_TITLE: " + cardItem.getTitle());
@@ -58,6 +59,9 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
 
         // Set Click Listener
         btnBack.setOnClickListener(this);
+
+        // set the edit button to goes to editing moodboard activity with the intent list of all images?
+
     }
 
     private CardItem loadMoodboardById(String id) {

@@ -9,42 +9,20 @@
     android:background="@color/dirtwhite"
     tools:context=".Moodboard1">
 
-    <ImageView
-        android:id="@+id/moodBoard"
+    <com.mango.artsparkxml.CanvasView
+        android:id="@+id/canvasView"
         android:layout_width="360sp"
         android:layout_height="360sp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="20sp"
-        app:srcCompat="@drawable/artspark_moodboard_board" />
+        android:layout_marginTop="20sp" />
 
     <View
         android:layout_width="360sp"
         android:layout_height="10dp"
-        android:layout_below="@id/moodBoard"
+        android:layout_below="@id/canvasView"
         android:layout_centerHorizontal="true"
         android:background="@drawable/shadow_down" />
-
-    <ImageButton
-        android:id="@+id/artSparkBurgerIcon"
-        android:layout_width="60sp"
-        android:layout_height="60sp"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
-        android:clickable="true"
-        android:contentDescription="@string/icon"
-        app:srcCompat="@drawable/artspark_burger_icon" />
-
-    <ImageButton
-        android:id="@+id/artSparkMoodBoardIcon"
-        android:layout_width="62sp"
-        android:layout_height="62sp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="110sp"
-        android:background="@android:color/transparent"
-        android:clickable="true"
-        android:contentDescription="@string/icon"
-        app:srcCompat="@drawable/artspark_moodboard_icon" />
 
 
     <View
@@ -76,5 +54,28 @@
         android:background="@android:color/transparent"
         android:contentDescription="@string/icon"
         app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/icon"
+        app:srcCompat="?attr/actionModeShareDrawable"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="40sp"
+        android:clickable="true"
+        android:contentDescription="@string/icon"
+        app:srcCompat="@android:drawable/ic_menu_add"
+
+        />
 
 </RelativeLayout>

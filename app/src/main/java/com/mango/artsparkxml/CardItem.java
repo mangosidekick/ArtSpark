@@ -58,5 +58,6 @@ public class CardItem {
         }
 
         // Getters and setters
+
     }
 }
