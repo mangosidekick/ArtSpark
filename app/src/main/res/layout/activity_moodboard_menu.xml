@@ -8,6 +8,29 @@
     android:background="@color/dirtwhite"
     tools:context=".MoodboardMenu">
 
+    <RelativeLayout
+        android:id="@+id/moodboard_notice"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/moodboard_notice_img"
+            android:layout_width="240sp"
+            android:layout_height="250sp"
+            android:src="@drawable/moodboard_notice"
+            />
+        <TextView
+            android:id="@+id/moodboard_notice_txt"
+            android:layout_below="@id/moodboard_notice_img"
+            android:text="@string/moodboard_notice"
+            android:fontFamily="@font/concert_one"
+            android:textColor="@color/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"/>
+
+    </RelativeLayout>
+
     <View
         android:id="@+id/upperNavBar"
         android:layout_width="match_parent"

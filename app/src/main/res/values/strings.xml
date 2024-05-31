@@ -45,6 +45,10 @@
     <string name="boardnumber8">Board 8</string>
     <string name="boardnumber9">Board 9</string>
 
+    //notices//
+    <string name="moodboard_notice">Click on + to add your first moodboard!</string>
+
+
     //menu items//
     <string name="home_menuitem">Home</string>
     <string name="board_menuitem">Boards</string>
