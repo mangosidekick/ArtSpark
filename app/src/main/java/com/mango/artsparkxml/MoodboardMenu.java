@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -38,6 +39,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     GridView gridView;
     MyCardAdapter adapter;
     List<CardItem> cardList;
+    RelativeLayout moodboardNotice;
 
     String MOODBOARD_KEY = "moodboards";
     int MOODBOARD_LIMIT = 9;
@@ -49,9 +51,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_moodboard_menu);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
-
         bottomNavigationView.setSelectedItemId(R.id.board_menu);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -72,6 +72,8 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
                 return false;
             }
         });
+
+        moodboardNotice = (RelativeLayout) findViewById(R.id.moodboard_notice);
 
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
@@ -155,11 +157,15 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         // check limit
         if ((cardList.size()+1) > MOODBOARD_LIMIT) {
             Toast.makeText(this, "Moodboard limit is 9!", Toast.LENGTH_SHORT).show();
+
         } else {
             String newBoardId = UUID.randomUUID().toString();
             int newBoardTitleCounter = cardList.size() + 1;
 
             CardItem newCardItem = new CardItem(newBoardId, "Moodboard " + newBoardTitleCounter);
+
+            //make the notice invisible
+            moodboardNotice.setVisibility(View.INVISIBLE);
 
             // Add the new moodboard to the list
             cardList.add(newCardItem);

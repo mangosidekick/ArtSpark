@@ -47,6 +47,7 @@
 
     //notices//
     <string name="moodboard_notice">Click on + to add your first moodboard!</string>
+    <string name="tasks_notice">Click on + to add your first task!</string>
 
 
     //menu items//

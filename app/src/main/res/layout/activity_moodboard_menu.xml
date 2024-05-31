@@ -17,7 +17,9 @@
             android:id="@+id/moodboard_notice_img"
             android:layout_width="240sp"
             android:layout_height="250sp"
+            android:layout_centerHorizontal="true"
             android:src="@drawable/moodboard_notice"
+            android:layout_margin="10sp"
             />
         <TextView
             android:id="@+id/moodboard_notice_txt"
@@ -28,7 +30,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"/>
-
     </RelativeLayout>
 
     <View
