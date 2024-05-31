@@ -12,6 +12,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.mango.artsparkxml.Model.CardItem;
 
 public class Moodboard1 extends AppCompatActivity implements View.OnClickListener {
 

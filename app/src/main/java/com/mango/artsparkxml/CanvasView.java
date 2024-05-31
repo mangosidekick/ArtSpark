@@ -10,11 +10,14 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.mango.artsparkxml.Model.CardItem;
+import com.mango.artsparkxml.Model.ImageModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CanvasView extends View {
-    private List<CardItem.Image> images;
+    private List<ImageModel> images;
     private Paint paint;
     private int activePointerId = INVALID_POINTER_ID;
     private static final int INVALID_POINTER_ID = -1;
@@ -37,6 +40,7 @@ public class CanvasView extends View {
     }
 
     public void setMoodboard(CardItem moodboard) {
+        // get it from database all the images with that boardId
         this.images = moodboard.getImages();
         invalidate();
     }
@@ -44,12 +48,12 @@ public class CanvasView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (CardItem.Image image : images) {
+        for (ImageModel image : images) {
             drawImage(canvas, image);
         }
     }
 
-    private void drawImage(Canvas canvas, CardItem.Image image) {
+    private void drawImage(Canvas canvas, ImageModel image) {
         // Load the bitmap (this should be done more efficiently in a real app)
         Bitmap bitmap = BitmapFactory.decodeFile(image.getUri());
         if (bitmap != null) {
@@ -85,7 +89,7 @@ public class CanvasView extends View {
                 final float y = event.getY(pointerIndex);
 
                 if (selectedImageIndex != -1) {
-                    CardItem.Image selectedImage = images.get(selectedImageIndex);
+                    ImageModel selectedImage = images.get(selectedImageIndex);
 
                     // Handle movement and scaling separately
                     if (event.getPointerCount() == 1) {
@@ -141,7 +145,7 @@ public class CanvasView extends View {
 
     private int getImageAtPosition(float x, float y) {
         for (int i = images.size() - 1; i >= 0; i--) {
-            CardItem.Image image = images.get(i);
+            ImageModel image = images.get(i);
             Bitmap bitmap = BitmapFactory.decodeFile(image.getUri());
 
             if (bitmap != null) {
