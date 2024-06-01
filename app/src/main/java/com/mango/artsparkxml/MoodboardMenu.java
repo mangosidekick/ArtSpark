@@ -164,9 +164,6 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
             CardItem newCardItem = new CardItem(newBoardId, "Moodboard " + newBoardTitleCounter);
 
-            //make the notice invisible
-            moodboardNotice.setVisibility(View.INVISIBLE);
-
             // Add the new moodboard to the list
             cardList.add(newCardItem);
 
