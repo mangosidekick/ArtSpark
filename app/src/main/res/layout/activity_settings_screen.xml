@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dirtwhite"
+    android:fontFamily="@font/concert_one"
+    tools:context=".SettingsScreen">
+
+
+    <View
+        android:id="@+id/upperNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:background="@color/yellow"
+        />
+
+    <TextView
+        android:id="@+id/menuTitleBoards"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:text="@string/settingsnavbartitle"
+        android:layout_marginTop="20sp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:textSize="25sp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/dirtwhite"
+        />
+
+    <ImageButton
+        android:id="@+id/backButtonSettings"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        android:layout_marginTop="10sp"
+        android:background="@android:color/transparent"
+        app:tint="@color/green"
+        android:contentDescription="@string/icon"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_above="@id/bottomNavigationView"
+        android:background="@drawable/shadow"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        app:itemActiveIndicatorStyle="@color/dirtwhite"
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/dirtwhite"
+        app:itemIconTint="@drawable/bnv_item_background"
+        app:itemTextColor="@drawable/bnv_item_background"
+        app:menu="@menu/bottom_navmenu" />
+
+</RelativeLayout>

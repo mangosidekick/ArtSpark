@@ -53,10 +53,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
 
         tasksNotice = (RelativeLayout) findViewById(R.id.tasks_notice);
 
-
-
         //the lists
-
         taskList = new ArrayList<>();
 
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
@@ -86,10 +83,11 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         });
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
-
         bottomNavigationView.setSelectedItemId(R.id.tasks_menu);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            //navbar
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
@@ -99,6 +97,9 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
                     return true;
                 } else if (itemId == R.id.board_menu) {
                     startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
+                    return true;
+                } else if (itemId == R.id.settings_menu) {
+                    startActivity(new Intent(CalendarToDoList.this, SettingsScreen.class));
                     return true;
                 } else return itemId == R.id.tasks_menu;
             }
