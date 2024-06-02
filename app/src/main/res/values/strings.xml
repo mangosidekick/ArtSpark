@@ -48,6 +48,7 @@
     //notices//
     <string name="moodboard_notice">Click on + to add your first moodboard!</string>
     <string name="tasks_notice">Click on + to add your first task!</string>
+    <string name="tasks_notice2">Swipe right to EDIT and left to DELETE</string>
 
 
     //menu items//

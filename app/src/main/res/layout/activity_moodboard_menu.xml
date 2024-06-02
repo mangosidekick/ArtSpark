@@ -59,6 +59,7 @@
         app:srcCompat="?attr/actionModeCloseDrawable"
         android:layout_marginTop="10sp"
         android:background="@android:color/transparent"
+        app:tint="@color/green"
         android:contentDescription="@string/icon"
         />
 
