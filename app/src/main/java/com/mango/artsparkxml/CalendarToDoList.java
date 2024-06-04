@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ import java.util.List;
 
 public class CalendarToDoList extends AppCompatActivity implements DialogCloseListener, View.OnClickListener {
     ImageButton backButton;
+    RelativeLayout tasksNotice;
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
     private FloatingActionButton addTasks;
@@ -48,7 +50,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         backButton = findViewById(R.id.backButtonCalendar);
         backButton.setOnClickListener(this);
 
-        //the lists
+        tasksNotice = findViewById(R.id.tasks_notice);
 
         taskList = new ArrayList<>();
 
@@ -59,13 +61,14 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
 
         addTasks = findViewById(R.id.addTasks);
 
-
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
+
+        updateTasksNoticeVisibility();
 
         addTasks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +77,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
             }
         });
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = findViewById(bottomNavigationView);
 
         bottomNavigationView.setSelectedItemId(R.id.tasks_menu);
 
@@ -86,12 +89,10 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
                 if (itemId == R.id.home_menu) {
                     startActivity(new Intent(CalendarToDoList.this, GreetingScreen.class));
                     return true;
-                }
-                else if (itemId == R.id.board_menu) {
+                } else if (itemId == R.id.board_menu) {
                     startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
                     return true;
-                }
-                else if (itemId == R.id.tasks_menu) {
+                } else if (itemId == R.id.tasks_menu) {
                     return true;
                 }
 
@@ -112,5 +113,14 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
+        updateTasksNoticeVisibility();
+    }
+
+    private void updateTasksNoticeVisibility() {
+        if (taskList.isEmpty()) {
+            tasksNotice.setVisibility(View.VISIBLE);
+        } else {
+            tasksNotice.setVisibility(View.INVISIBLE);
+        }
     }
 }
