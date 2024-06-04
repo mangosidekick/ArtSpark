@@ -46,37 +46,43 @@
             android:textSize="15sp"/>
     </RelativeLayout>
 
-
-    <View
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/upperNavBar"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
-        android:background="@color/yellow"
-        />
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-    <TextView
-        android:id="@+id/menuTitleTasks"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:text="@string/tasksnavbartitle"
-        android:layout_marginTop="20sp"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/concert_one"
-        android:textSize="25sp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/dirtwhite"
-        />
-    <ImageButton
-        android:id="@+id/backButtonCalendar"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        app:srcCompat="?attr/actionModeCloseDrawable"
-        android:layout_marginTop="10sp"
-        android:background="@android:color/transparent"
-        app:tint="@color/green"
-        android:contentDescription="@string/icon"
-        android:onClick="onClick"
-        />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/yellow">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                app:srcCompat="?attr/actionModeCloseDrawable"
+                android:layout_marginTop="10sp"
+                android:background="@android:color/transparent"
+                app:tint="@color/green"
+                android:contentDescription="@string/icon"
+                />
+
+            <TextView
+                android:id="@+id/menuTitleCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:text="@string/tasksnavbartitle"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/concert_one"
+                android:textSize="25sp"
+                android:textColor="@color/dirtwhite"
+                android:layout_gravity="center"
+                />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <CalendarView
         android:id="@+id/calendarView"

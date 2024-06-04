@@ -31,7 +31,7 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
         super.onResume();
         SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
 
-        if (!sharedpreferences.getBoolean(PREV_STARTED_KEY, false)) {
+        if (sharedpreferences.getBoolean(PREV_STARTED_KEY, false)) {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean(PREV_STARTED_KEY, true);
             editor.apply();

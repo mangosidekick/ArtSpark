@@ -48,7 +48,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        backButton = findViewById(R.id.backButtonCalendar);
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
         tasksNotice = (RelativeLayout) findViewById(R.id.tasks_notice);
@@ -107,7 +107,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.backButtonCalendar) {
+        if (v.getId() == R.id.backButton) {
             startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
         }
     }

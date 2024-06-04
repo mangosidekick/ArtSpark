@@ -47,6 +47,8 @@
 
     //settings//
     <string name="settingsnavbartitle">SETTINGS</string>
+    <string name="changeimage">Change Image</string>
+    <string name="changename">Change Name</string>
 
     //notices//
     <string name="moodboard_notice">Click on + to add your first moodboard!</string>

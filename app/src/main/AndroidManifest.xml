@@ -16,9 +16,6 @@
             android:name=".SettingsScreen"
             android:exported="false" />
         <activity
-            android:name=".UserInfo"
-            android:exported="false" />
-        <activity
             android:name=".MoodboardMenu"
             android:exported="true" />
         <activity
