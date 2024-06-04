@@ -66,7 +66,7 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
         if (v.getId() == R.id.backButton) {
             startActivity(new Intent(SettingsScreen.this, CalendarToDoList.class));
         }else if (v.getId() == R.id.changeTextButton){
-            startActivity(new Intent(SettingsScreen.this, WelcomeScreen.class));
+            startActivity(new Intent(SettingsScreen.this, GreetingScreen.class));
         }
     }
 }

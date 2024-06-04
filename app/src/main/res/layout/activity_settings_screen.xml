@@ -95,7 +95,8 @@
             android:textColor="@color/dirtwhite"
             android:backgroundTint="@color/yellow"
             android:layout_marginTop="16dp"
-            android:text="@string/changeimage" />
+            android:text="@string/changeimage"
+            app:rippleColor="@color/orange" />
 
         <Button
             android:id="@+id/changeTextButton"
@@ -103,10 +104,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/changeImageButton"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/dirtwhite"
-            android:backgroundTint="@color/yellow"
             android:layout_marginTop="16dp"
-            android:text="@string/changename" />
+            android:backgroundTint="@color/yellow"
+            android:text="@string/changename"
+            android:textColor="@color/dirtwhite"
+            app:rippleColor="@color/orange" />
     </RelativeLayout>
 
 </ScrollView>
