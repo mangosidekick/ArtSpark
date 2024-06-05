@@ -51,9 +51,9 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
-        tasksNotice = (RelativeLayout) findViewById(R.id.tasks_notice);
+        tasksNotice = findViewById(R.id.tasks_notice);
 
-        //the lists
+        // Initialize the task list
         taskList = new ArrayList<>();
 
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
@@ -62,7 +62,6 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         addTasks = findViewById(R.id.addTasks);
-
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
@@ -82,12 +81,10 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
             }
         });
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.tasks_menu);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-            //navbar
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
@@ -128,6 +125,5 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         } else {
             tasksNotice.setVisibility(View.INVISIBLE);
         }
-
     }
 }
