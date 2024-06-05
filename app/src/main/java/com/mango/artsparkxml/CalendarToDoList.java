@@ -30,6 +30,7 @@ import java.util.List;
 public class CalendarToDoList extends AppCompatActivity implements DialogCloseListener, View.OnClickListener {
     ImageButton backButton;
     RelativeLayout tasksNotice;
+
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
     private FloatingActionButton addTasks;
@@ -47,11 +48,12 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        backButton = findViewById(R.id.backButtonCalendar);
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
         tasksNotice = findViewById(R.id.tasks_notice);
 
+        // Initialize the task list
         taskList = new ArrayList<>();
 
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
@@ -77,11 +79,11 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
             }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(bottomNavigationView);
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.tasks_menu);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
@@ -92,17 +94,16 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
                 } else if (itemId == R.id.board_menu) {
                     startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
                     return true;
-                } else if (itemId == R.id.tasks_menu) {
+                } else if (itemId == R.id.settings_menu) {
+                    startActivity(new Intent(CalendarToDoList.this, SettingsScreen.class));
                     return true;
-                }
-
-                return false;
+                } else return itemId == R.id.tasks_menu;
             }
         });
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.backButtonCalendar) {
+        if (v.getId() == R.id.backButton) {
             startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
         }
     }
@@ -113,6 +114,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
+
         updateTasksNoticeVisibility();
     }
 
