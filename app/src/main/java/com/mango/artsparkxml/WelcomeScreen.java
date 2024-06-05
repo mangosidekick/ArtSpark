@@ -23,17 +23,16 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
     private android.widget.EditText EditText;
     EditText userName = (EditText);
 
-    private final String PREV_STARTED_KEY = "prevStarted";
+    String prevStarted = "yes";
     private final String USERNAME_KEY = "username";
 
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
-
-        if (!sharedpreferences.getBoolean(PREV_STARTED_KEY, false)) {
+        SharedPreferences sharedpreferences = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+        if (!sharedpreferences.getBoolean(prevStarted, false)) {
             SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putBoolean(PREV_STARTED_KEY, true);
+            editor.putBoolean(prevStarted, Boolean.TRUE);
             editor.apply();
         } else {
             moveToSecondary();
@@ -64,7 +63,6 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
         if (v.getId() == R.id.enterbutton) {
             if( TextUtils.isEmpty(userName.getText())) {
                 Toast.makeText(this, "Name is required!", Toast.LENGTH_SHORT).show();
-                userName.setError( "First name is required!" );
             } else {
                 String name = userName.getText().toString();
 

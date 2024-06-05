@@ -2,35 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/moodboard_menu"
+    android:id="@+id/settings_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dirtwhite"
-    tools:context=".MoodboardMenu">
-
-    <RelativeLayout
-        android:id="@+id/moodboard_notice"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/moodboard_notice_img"
-            android:layout_width="240sp"
-            android:layout_height="250sp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/moodboard_notice"
-            android:layout_margin="10sp"
-            />
-        <TextView
-            android:id="@+id/moodboard_notice_txt"
-            android:layout_below="@id/moodboard_notice_img"
-            android:text="@string/moodboard_notice"
-            android:fontFamily="@font/concert_one"
-            android:textColor="@color/green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"/>
-    </RelativeLayout>
+    android:fontFamily="@font/concert_one"
+    tools:context=".SettingsScreen">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/upperNavBar"
@@ -55,10 +32,10 @@
                 />
 
             <TextView
-                android:id="@+id/menuTitleBoards"
+                android:id="@+id/menuTitleSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
-                android:text="@string/boardsnavbartitle"
+                android:text="@string/settingsnavbartitle"
                 android:layout_marginTop="20sp"
                 android:fontFamily="@font/concert_one"
                 android:textSize="25sp"
@@ -70,39 +47,78 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/upperNavBar"
+    android:layout_above="@id/bottomNavigationView"
+    >
 
-    <GridView
-        android:id="@+id/card_list"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/upperNavBar"
-        android:layout_marginTop="-1dp"
-        android:columnWidth="65dp"
-        android:gravity="center"
-        android:horizontalSpacing="6dp"
-        android:listSelector="#00000000"
-        android:numColumns="3"
-        android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:contentDescription="add button"
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/bottomNavigationView"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="32dp"
-        android:backgroundTint="@color/orange"
-        android:src="@drawable/baseline_add"/>
+        android:layout_gravity="center_horizontal"
+
+        android:layout_marginTop="30sp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="100sp"
+            android:layout_centerHorizontal="true"
+            >
+            <ImageView
+                android:layout_width="130sp"
+                android:layout_height="130sp"
+                android:background="@drawable/artspark_logo"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_below="@id/profile"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/concert_one"
+            android:textColor="@color/green"
+            android:textSize="30sp"
+            android:text="@string/username"
+            />
+
+        <Button
+            android:id="@+id/changeImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/dirtwhite"
+            android:backgroundTint="@color/yellow"
+            android:layout_marginTop="16dp"
+            android:text="@string/changeimage"
+            app:rippleColor="@color/orange" />
+
+        <Button
+            android:id="@+id/changeTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changeImageButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/yellow"
+            android:text="@string/changename"
+            android:textColor="@color/dirtwhite"
+            app:rippleColor="@color/orange" />
+    </RelativeLayout>
+
+</ScrollView>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_above="@id/bottomNavigationView"
         android:background="@drawable/shadow"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         app:itemActiveIndicatorStyle="@color/dirtwhite"
         android:id="@+id/bottomNavigationView"

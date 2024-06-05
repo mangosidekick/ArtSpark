@@ -76,6 +76,8 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+
+                updateTasksNoticeVisibility();
             }
         });
 
@@ -83,7 +85,6 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         bottomNavigationView.setSelectedItemId(R.id.tasks_menu);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();

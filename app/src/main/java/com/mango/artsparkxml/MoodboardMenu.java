@@ -51,6 +51,8 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.board_menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            //navbar
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
@@ -63,8 +65,10 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
                 } else if (itemId == R.id.tasks_menu) {
                     startActivity(new Intent(MoodboardMenu.this, CalendarToDoList.class));
                     return true;
+                } else if (itemId == R.id.settings_menu) {
+                    startActivity(new Intent(MoodboardMenu.this, SettingsScreen.class));
+                    return true;
                 }
-
                 return false;
             }
         });

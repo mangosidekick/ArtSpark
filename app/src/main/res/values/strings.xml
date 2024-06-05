@@ -30,11 +30,11 @@
     <string name="icon">icon</string>
     <string name="save">Save</string>
     <string name="new_task">New Task</string>
+    <string name="tasksnavbartitle">TASKS</string>
     <string name="tasks">Tasks</string>
 
     //moodboard//
     <string name="boardsnavbartitle">BOARDS</string>
-    <string name="tasksnavbartitle">TASKS</string>
     <string name="boardnumber1">Board 1</string>
     <string name="boardnumber2">Board 2</string>
     <string name="boardnumber3">Board 3</string>
@@ -45,15 +45,22 @@
     <string name="boardnumber8">Board 8</string>
     <string name="boardnumber9">Board 9</string>
 
+    //settings//
+    <string name="settingsnavbartitle">SETTINGS</string>
+    <string name="changeimage">Change Image</string>
+    <string name="changename">Change Name</string>
+
     //notices//
     <string name="moodboard_notice">Click on + to add your first moodboard!</string>
     <string name="tasks_notice">Click on + to add your first task!</string>
+    <string name="tasks_notice2">Swipe right to EDIT and left to DELETE</string>
 
 
     //menu items//
     <string name="home_menuitem">Home</string>
     <string name="board_menuitem">Boards</string>
     <string name="tasks_menuitem">Tasks</string>
+    <string name="settings_menuitem">Settings</string>
 
 
 </resources>
