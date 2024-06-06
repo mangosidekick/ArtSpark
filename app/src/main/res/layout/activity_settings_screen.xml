@@ -74,41 +74,42 @@
                 android:background="@drawable/artspark_logo"/>
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/username"
+        <RelativeLayout
+            android:id="@+id/editname"
             android:layout_below="@id/profile"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:layout_centerHorizontal="true"
+            >
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="190sp"
+            android:layout_height="50sp"
+            android:hint="@string/username"
+            android:textSize="20sp"
             android:fontFamily="@font/concert_one"
+            android:textAlignment="center"
+            android:inputType="text"
             android:textColor="@color/green"
-            android:textSize="30sp"
-            android:text="@string/username"
+            android:textColorHint="@color/yellow"
+            android:background="@drawable/border"
+            android:layout_centerHorizontal="true"
+            android:capitalize="words"
             />
 
-        <Button
-            android:id="@+id/changeImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/username"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/dirtwhite"
-            android:backgroundTint="@color/yellow"
-            android:layout_marginTop="16dp"
-            android:text="@string/changeimage"
-            app:rippleColor="@color/orange" />
+            <ImageButton
+                android:layout_toLeftOf="@id/username"
+                android:id="@+id/changeTextButton"
+                android:layout_width="45sp"
+                android:layout_height="45sp"
+                android:src="@drawable/artspark_moodboard_icon2"
+                android:onClick="onClick"
+                android:background="@android:color/transparent"
+                />
+        </RelativeLayout>
 
-        <Button
-            android:id="@+id/changeTextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/changeImageButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/yellow"
-            android:text="@string/changename"
-            android:textColor="@color/dirtwhite"
-            app:rippleColor="@color/orange" />
     </RelativeLayout>
 
 </ScrollView>

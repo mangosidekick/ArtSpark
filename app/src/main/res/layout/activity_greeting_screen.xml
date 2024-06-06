@@ -94,6 +94,7 @@
         android:fontFamily="@font/concert_one"
         android:textSize="20sp"
         android:textColor="@color/dirtwhite"
+        app:rippleColor="@color/yellow"
         android:backgroundTint="@color/orange"
         />
 
