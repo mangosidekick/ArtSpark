@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
@@ -31,6 +32,8 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
     ImageButton backButton;
     RelativeLayout tasksNotice;
 
+    CalendarView calendarView;
+
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
     private FloatingActionButton addTasks;
@@ -44,6 +47,7 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar_todolist);
         getSupportActionBar();
+
 
         db = new DatabaseHandler(this);
         db.openDatabase();

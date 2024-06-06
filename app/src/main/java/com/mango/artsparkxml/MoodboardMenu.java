@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ExpandableListAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -40,7 +41,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     RelativeLayout moodboardNotice;
 
     String MOODBOARD_KEY = "moodboards";
-    int MOODBOARD_LIMIT = 9;
+    int MOODBOARD_LIMIT = 18;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +160,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     private void addNewBoard() {
         // check limit
         if ((cardList.size() + 1) > MOODBOARD_LIMIT) {
-            Toast.makeText(this, "Moodboard limit is 9!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Moodboard limit is 18!", Toast.LENGTH_SHORT).show();
         } else {
             String newBoardId = UUID.randomUUID().toString();
             int newBoardTitleCounter = cardList.size() + 1;
