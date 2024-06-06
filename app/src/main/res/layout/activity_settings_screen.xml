@@ -74,9 +74,22 @@
                 android:background="@drawable/artspark_logo"/>
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/changeProfilePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:text="@string/changeimage"
+            android:layout_below="@id/profile"
+            android:fontFamily="@font/concert_one"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20sp"
+            android:textColor="@color/dirtwhite"
+            android:backgroundTint="@color/yellow"
+            />
+
         <RelativeLayout
             android:id="@+id/editname"
-            android:layout_below="@id/profile"
+            android:layout_below="@id/changeProfilePicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"

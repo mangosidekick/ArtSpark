@@ -47,7 +47,7 @@
 
     //settings//
     <string name="settingsnavbartitle">SETTINGS</string>
-    <string name="changeimage">Change Image</string>
+    <string name="changeimage">Change Icon</string>
     <string name="changename">Change Name</string>
 
     //notices//
