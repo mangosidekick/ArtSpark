@@ -19,14 +19,6 @@ public class ToDoModel {
         return status;
     }
 
-    public Bitmap getImage() {
-        return image;
-    }
-
-    public void setImage(Bitmap image) {
-        this.image = image;
-    }
-
     public void setStatus(int status) {
         this.status = status;
     }
