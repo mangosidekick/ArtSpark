@@ -98,14 +98,35 @@
         android:backgroundTint="@color/orange"
         />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enterbutton"
+        android:layout_alignParentBottom="true"
+        >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="100sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100sp"
+        >
+        <ImageView
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:background="@drawable/artspark_logo"/>
+    </androidx.cardview.widget.CardView>
     <ImageView
         android:id="@+id/mascot"
-        android:layout_width="410dp"
-        android:layout_height="335dp"
-        app:srcCompat="@drawable/artspark_mascot"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/user_silly"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         />
-
+    </RelativeLayout>
 
 </RelativeLayout>
 
