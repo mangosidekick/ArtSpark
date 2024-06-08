@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ExpandableListAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,9 +39,10 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     GridView gridView;
     MyCardAdapter adapter;
     List<CardItem> cardList;
+    RelativeLayout moodboardNotice;
 
     String MOODBOARD_KEY = "moodboards";
-    int MOODBOARD_LIMIT = 9;
+    int MOODBOARD_LIMIT = 18;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +50,11 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_moodboard_menu);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.board_menu);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            //navbar
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
@@ -59,18 +62,20 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
                 if (itemId == R.id.home_menu) {
                     startActivity(new Intent(MoodboardMenu.this, GreetingScreen.class));
                     return true;
-                }
-                else if (itemId == R.id.board_menu) {
+                } else if (itemId == R.id.board_menu) {
                     return true;
-                }
-                else if (itemId == R.id.tasks_menu) {
+                } else if (itemId == R.id.tasks_menu) {
                     startActivity(new Intent(MoodboardMenu.this, CalendarToDoList.class));
                     return true;
+                } else if (itemId == R.id.settings_menu) {
+                    startActivity(new Intent(MoodboardMenu.this, SettingsScreen.class));
+                    return true;
                 }
-
                 return false;
             }
         });
+
+        moodboardNotice = findViewById(R.id.moodboard_notice);
 
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
@@ -117,6 +122,9 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
                 addNewBoard();
             }
         });
+
+        // Update visibility based on initial data load
+        updateMoodboardNoticeVisibility();
     }
 
     private List<CardItem> loadMoodboards() {
@@ -152,8 +160,8 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
     private void addNewBoard() {
         // check limit
-        if ((cardList.size()+1) > MOODBOARD_LIMIT) {
-            Toast.makeText(this, "Moodboard limit is 9!", Toast.LENGTH_SHORT).show();
+        if ((cardList.size() + 1) > MOODBOARD_LIMIT) {
+            Toast.makeText(this, "Moodboard limit is 18!", Toast.LENGTH_SHORT).show();
         } else {
             String newBoardId = UUID.randomUUID().toString();
             int newBoardTitleCounter = cardList.size() + 1;
@@ -172,6 +180,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
             // Refresh the GridView
             adapter.notifyDataSetChanged();
+            updateMoodboardNoticeVisibility();
         }
     }
 
@@ -189,7 +198,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         if (v.getId() == R.id.backButton) {
             startActivity(new Intent(MoodboardMenu.this, GreetingScreen.class));
         }
-        }
+    }
 
     private void showDeleteConfirmationDialog(final CardItem moodboard, final int position) {
         new AlertDialog.Builder(this)
@@ -217,6 +226,14 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
         // Notify the adapter about the removal
         adapter.notifyDataSetChanged();
+        updateMoodboardNoticeVisibility();
+    }
+
+    private void updateMoodboardNoticeVisibility() {
+        if (cardList.isEmpty()) {
+            moodboardNotice.setVisibility(View.VISIBLE);
+        } else {
+            moodboardNotice.setVisibility(View.INVISIBLE);
+        }
     }
 }
-

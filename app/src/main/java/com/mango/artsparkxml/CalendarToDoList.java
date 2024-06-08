@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,6 +30,10 @@ import java.util.List;
 
 public class CalendarToDoList extends AppCompatActivity implements DialogCloseListener, View.OnClickListener {
     ImageButton backButton;
+    RelativeLayout tasksNotice;
+
+    CalendarView calendarView;
+
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
     private FloatingActionButton addTasks;
@@ -42,14 +48,16 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         setContentView(R.layout.activity_calendar_todolist);
         getSupportActionBar();
 
+
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        backButton = findViewById(R.id.backButtonCalendar);
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
-        //the lists
+        tasksNotice = findViewById(R.id.tasks_notice);
 
+        // Initialize the task list
         taskList = new ArrayList<>();
 
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
@@ -59,7 +67,6 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
 
         addTasks = findViewById(R.id.addTasks);
 
-
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
@@ -67,15 +74,18 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
 
+        updateTasksNoticeVisibility();
+
         addTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+
+                updateTasksNoticeVisibility();
             }
         });
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.tasks_menu);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -86,22 +96,19 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
                 if (itemId == R.id.home_menu) {
                     startActivity(new Intent(CalendarToDoList.this, GreetingScreen.class));
                     return true;
-                }
-                else if (itemId == R.id.board_menu) {
+                } else if (itemId == R.id.board_menu) {
                     startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
                     return true;
-                }
-                else if (itemId == R.id.tasks_menu) {
+                } else if (itemId == R.id.settings_menu) {
+                    startActivity(new Intent(CalendarToDoList.this, SettingsScreen.class));
                     return true;
-                }
-
-                return false;
+                } else return itemId == R.id.tasks_menu;
             }
         });
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.backButtonCalendar) {
+        if (v.getId() == R.id.backButton) {
             startActivity(new Intent(CalendarToDoList.this, MoodboardMenu.class));
         }
     }
@@ -112,5 +119,15 @@ public class CalendarToDoList extends AppCompatActivity implements DialogCloseLi
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
+
+        updateTasksNoticeVisibility();
+    }
+
+    private void updateTasksNoticeVisibility() {
+        if (taskList.isEmpty()) {
+            tasksNotice.setVisibility(View.VISIBLE);
+        } else {
+            tasksNotice.setVisibility(View.INVISIBLE);
+        }
     }
 }

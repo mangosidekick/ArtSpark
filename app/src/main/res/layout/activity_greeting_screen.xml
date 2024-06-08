@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/dirtwhite"
     android:fontFamily="@font/concert_one"
-    android:layout_marginBottom="50sp"
+    android:layout_marginBottom="46sp"
     tools:context=".GreetingScreen">
 
     <TextView
@@ -94,6 +94,7 @@
         android:fontFamily="@font/concert_one"
         android:textSize="20sp"
         android:textColor="@color/dirtwhite"
+        app:rippleColor="@color/yellow"
         android:backgroundTint="@color/orange"
         />
 

@@ -45,6 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private SQLiteDatabase db;
 
+
     public DatabaseHandler(Context context){
         super(context, NAME, null, VERSION);
     }
@@ -134,3 +135,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // delete image
 
 }
+
+

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dirtwhite"
-    android:layout_marginBottom="50sp"
+    android:layout_marginBottom="46sp"
     android:fontFamily="@font/concert_one"
     tools:context=".WelcomeScreen">
 
@@ -75,6 +75,7 @@
         android:fontFamily="@font/concert_one"
         android:textSize="20sp"
         android:textColor="@color/dirtwhite"
+        app:rippleColor="@color/yellow"
         android:backgroundTint="@color/orange"
 
         />

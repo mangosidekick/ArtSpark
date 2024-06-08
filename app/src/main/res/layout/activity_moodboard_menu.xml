@@ -2,47 +2,85 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/moodboard_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dirtwhite"
     tools:context=".MoodboardMenu">
 
-    <View
+    <RelativeLayout
+        android:id="@+id/moodboard_notice"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/moodboard_notice_img"
+            android:layout_width="240sp"
+            android:layout_height="250sp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/moodboard_notice"
+            android:layout_margin="10sp"
+            />
+        <TextView
+            android:id="@+id/moodboard_notice_txt"
+            android:layout_below="@id/moodboard_notice_img"
+            android:text="@string/moodboard_notice"
+            android:fontFamily="@font/concert_one"
+            android:textColor="@color/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"/>
+    </RelativeLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/upperNavBar"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
-        android:background="@color/yellow"
-        />
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-    <TextView
-        android:id="@+id/menuTitleBoards"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:text="@string/boardsnavbartitle"
-        android:layout_marginTop="20sp"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/concert_one"
-        android:textSize="25sp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/dirtwhite"
-        />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/yellow">
 
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        app:srcCompat="?attr/actionModeCloseDrawable"
-        android:layout_marginTop="10sp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/icon"
-        />
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                app:srcCompat="?attr/actionModeCloseDrawable"
+                android:layout_marginTop="10sp"
+                android:background="@android:color/transparent"
+                app:tint="@color/green"
+                android:contentDescription="@string/icon"
+                />
 
+            <TextView
+                android:id="@+id/menuTitleBoards"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:text="@string/boardsnavbartitle"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/concert_one"
+                android:textSize="25sp"
+                android:textColor="@color/dirtwhite"
+                android:layout_gravity="center"
+                />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/upperNavBar"
+    android:fillViewport="true"
+    android:layout_above="@id/bottomNavigationView"
+    >
     <GridView
         android:id="@+id/card_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/upperNavBar"
         android:layout_marginTop="-1dp"
         android:columnWidth="65dp"
         android:gravity="center"
@@ -50,9 +88,10 @@
         android:listSelector="#00000000"
         android:numColumns="3"
         android:scrollbars="none"
+        android:layout_marginBottom="10sp"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp" />
-
+</ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:contentDescription="add button"
         android:id="@+id/addButton"
@@ -74,7 +113,7 @@
         app:itemActiveIndicatorStyle="@color/dirtwhite"
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/dirtwhite"
         app:itemIconTint="@drawable/bnv_item_background"
