@@ -77,7 +77,7 @@
         <Button
             android:id="@+id/changeProfilePicture"
             android:layout_width="wrap_content"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:text="@string/changeimage"
             android:layout_below="@id/profile"
             android:fontFamily="@font/concert_one"
@@ -110,16 +110,18 @@
             android:background="@drawable/border"
             android:layout_centerHorizontal="true"
             android:capitalize="words"
+            android:maxLength="10"
             />
 
             <ImageButton
                 android:layout_toLeftOf="@id/username"
                 android:id="@+id/changeTextButton"
-                android:layout_width="45sp"
-                android:layout_height="45sp"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
                 android:src="@drawable/artspark_moodboard_icon2"
                 android:onClick="onClick"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/proceed"
                 />
         </RelativeLayout>
 
