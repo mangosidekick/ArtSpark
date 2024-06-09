@@ -5,14 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.widget.Toast;
 
+import com.mango.artsparkxml.Model.ImageModel;
 import com.mango.artsparkxml.Model.ToDoModel;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
+    Context context;
     private static final int VERSION = 1;
     private static final String NAME = "toDoListDatabase";
     private static final String TODO_TABLE = "todo";
@@ -21,6 +26,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String STATUS = "status";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, " + STATUS + " INTEGER)";
     private SQLiteDatabase db;
+    private ByteArrayOutputStream byteArrayOutputStream;
+    private byte[] byteImage;
+    private static String CreateTableQuery = "Create table ProfileUser(image BLOB)";
 
     public DatabaseHandler(Context context){
         super(context, NAME, null, VERSION);
@@ -29,6 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TODO_TABLE);
+        db.execSQL(CreateTableQuery);
     }
 
     @Override
@@ -42,6 +51,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void openDatabase(){
         db = this.getWritableDatabase();
     }
+
+    //image stuff
+
+    public void storeData(ImageModel imageModel){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Bitmap bitmapImage = imageModel.getImage();
+
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byteImage = byteArrayOutputStream.toByteArray();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("image", byteImage);
+
+        long checkQuery = database.insert("Image", null, contentValues);
+        if (checkQuery != 1){
+            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+            database.close();
+        }
+        else{
+            Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public Cursor getUser(){
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery("Select * from ProfileUser", null);
+        return cursor;
+    }
+
+    //tasks stuff
 
     public void insertTask(ToDoModel task){
         ContentValues cv = new ContentValues();
@@ -91,5 +131,4 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.delete(TODO_TABLE, ID + "=?", new String[] {String.valueOf(id)});
     }
 }
-
 
