@@ -62,16 +62,17 @@
         android:layout_marginTop="30sp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/profile"
+            android:id="@+id/profilecard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="100sp"
             android:layout_centerHorizontal="true"
             >
             <ImageView
+                android:id="@+id/profile"
                 android:layout_width="130sp"
                 android:layout_height="130sp"
-                android:background="@drawable/artspark_logo"/>
+                android:background="@drawable/mouzart_face"/>
         </androidx.cardview.widget.CardView>
 
         <Button
@@ -79,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50sp"
             android:text="@string/changeimage"
-            android:layout_below="@id/profile"
+            android:layout_below="@id/profilecard"
             android:fontFamily="@font/concert_one"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20sp"
