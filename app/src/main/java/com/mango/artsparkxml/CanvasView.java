@@ -6,6 +6,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Color;
+import android.graphics.PointF;
+import android.media.Image;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,130 +20,110 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CanvasView extends View {
-    private List<ImageModel> images;
-    private Paint paint;
-    private int activePointerId = INVALID_POINTER_ID;
-    private static final int INVALID_POINTER_ID = -1;
-    private float lastTouchX, lastTouchY;
-    private int selectedImageIndex = -1;
+    private List<ImageModel> images = new ArrayList<>();
+    private Matrix matrix = new Matrix();
+    private Matrix savedMatrix = new Matrix();
+    private float[] matrixValues = new float[9];
+    private float dX, dY;
+    private float scale = 1f;
+    private float oldDist = 1f;
+    private PointF start = new PointF();
+    private PointF mid = new PointF();
+    private int mode = NONE;
+
+    private static final int NONE = 0;
+    private static final int DRAG = 1;
+    private static final int ZOOM = 2;
 
     public CanvasView(Context context) {
         super(context);
-        init();
     }
 
     public CanvasView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
     }
 
-    private void init() {
-        images = new ArrayList<>();
-        paint = new Paint();
-    }
-
-    public void setMoodboard(CardItem moodboard) {
-        // get it from database all the images with that boardId
-        this.images = moodboard.getImages();
+    public void addImage(Bitmap bitmap, String uri) {
+        ImageModel imageData = new ImageModel();
+        imageData.setBitmap(bitmap);
+        imageData.setUri(uri);
+        images.add(imageData);
         invalidate();
+    }
+
+    public List<ImageModel> getImages() {
+        return images;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (ImageModel image : images) {
-            drawImage(canvas, image);
-        }
-    }
 
-    private void drawImage(Canvas canvas, ImageModel image) {
-        // Load the bitmap (this should be done more efficiently in a real app)
-        Bitmap bitmap = BitmapFactory.decodeFile(image.getUri());
-        if (bitmap != null) {
-            Matrix matrix = new Matrix();
-            matrix.postScale(image.getScaleX(), image.getScaleY());
-            matrix.postTranslate(image.getX(), image.getY());
-            canvas.drawBitmap(bitmap, matrix, paint);
+        // save the current state of the canvas before,
+        // to draw the background of the canvas
+        canvas.save();
+
+        // DEFAULT color of the canvas
+        int backgroundColor = Color.WHITE;
+        canvas.drawColor(backgroundColor);
+
+        for (ImageModel imageData : images) {
+            matrix.reset();
+            matrix.postScale(imageData.getScaleX(), imageData.getScaleY());
+            matrix.postTranslate(imageData.getX(), imageData.getY());
+
+            canvas.drawBitmap(imageData.getBitmap(), matrix, null);
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        final int action = event.getActionMasked();
-
-        switch (action) {
-            case MotionEvent.ACTION_DOWN: {
-                final int pointerIndex = event.getActionIndex();
-                final float x = event.getX(pointerIndex);
-                final float y = event.getY(pointerIndex);
-
-                activePointerId = event.getPointerId(0);
-                lastTouchX = x;
-                lastTouchY = y;
-
-                selectedImageIndex = getImageAtPosition(x, y);
-
+        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
+                savedMatrix.set(matrix);
+                start.set(event.getX(), event.getY());
+                mode = DRAG;
                 break;
-            }
-
-            case MotionEvent.ACTION_MOVE: {
-                final int pointerIndex = event.findPointerIndex(activePointerId);
-                final float x = event.getX(pointerIndex);
-                final float y = event.getY(pointerIndex);
-
-                if (selectedImageIndex != -1) {
-                    ImageModel selectedImage = images.get(selectedImageIndex);
-
-                    // Handle movement and scaling separately
-                    if (event.getPointerCount() == 1) {
-                        // Move the image
-                        final float dx = x - lastTouchX;
-                        final float dy = y - lastTouchY;
-
-                        selectedImage.setX(selectedImage.getX() + dx);
-                        selectedImage.setY(selectedImage.getY() + dy);
-                    } else if (event.getPointerCount() == 2) {
-                        // Scale the image
-                        float newDistX = Math.abs(event.getX(0) - event.getX(1));
-                        float newDistY = Math.abs(event.getY(0) - event.getY(1));
-
-                        float oldDistX = Math.abs(lastTouchX - event.getX(1));
-                        float oldDistY = Math.abs(lastTouchY - event.getY(1));
-
-                        selectedImage.setScaleX(selectedImage.getScaleX() * (newDistX / oldDistX));
-                        selectedImage.setScaleY(selectedImage.getScaleY() * (newDistY / oldDistY));
-                    }
-
-                    invalidate();
-
-                    lastTouchX = x;
-                    lastTouchY = y;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                oldDist = spacing(event);
+                if (oldDist > 10f) {
+                    savedMatrix.set(matrix);
+                    midPoint(mid, event);
+                    mode = ZOOM;
                 }
                 break;
-            }
-
             case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL: {
-                activePointerId = INVALID_POINTER_ID;
-                selectedImageIndex = -1;
+            case MotionEvent.ACTION_POINTER_UP:
+                mode = NONE;
                 break;
-            }
-
-            case MotionEvent.ACTION_POINTER_UP: {
-                final int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-                final int pointerId = event.getPointerId(pointerIndex);
-
-                if (pointerId == activePointerId) {
-                    final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-                    lastTouchX = event.getX(newPointerIndex);
-                    lastTouchY = event.getY(newPointerIndex);
-                    activePointerId = event.getPointerId(newPointerIndex);
+            case MotionEvent.ACTION_MOVE:
+                if (mode == DRAG) {
+                    matrix.set(savedMatrix);
+                    matrix.postTranslate(event.getX() - start.x, event.getY() - start.y);
+                } else if (mode == ZOOM && event.getPointerCount() == 2) {
+                    float newDist = spacing(event);
+                    if (newDist > 10f) {
+                        matrix.set(savedMatrix);
+                        float scale = newDist / oldDist;
+                        matrix.postScale(scale, scale, mid.x, mid.y);
+                    }
                 }
                 break;
-            }
         }
-
+        invalidate();
         return true;
+    }
+
+    private float spacing(MotionEvent event) {
+        float x = event.getX(0) - event.getX(1);
+        float y = event.getY(0) - event.getY(1);
+        return (float) Math.sqrt(x * x + y * y);
+    }
+
+    private void midPoint(PointF point, MotionEvent event) {
+        float x = event.getX(0) + event.getX(1);
+        float y = event.getY(0) + event.getY(1);
+        point.set(x / 2, y / 2);
     }
 
     private int getImageAtPosition(float x, float y) {

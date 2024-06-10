@@ -9,22 +9,6 @@
     android:background="@color/dirtwhite"
     tools:context=".Moodboard1">
 
-    <com.mango.artsparkxml.CanvasView
-        android:id="@+id/canvasView"
-        android:layout_width="360sp"
-        android:layout_height="360sp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20sp" />
-
-    <View
-        android:layout_width="360sp"
-        android:layout_height="10dp"
-        android:layout_below="@id/canvasView"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/shadow_down" />
-
-
     <View
         android:id="@+id/upperNavBar"
         android:layout_width="match_parent"
@@ -65,8 +49,24 @@
         android:contentDescription="@string/icon"
         app:srcCompat="?attr/actionModeShareDrawable"/>
 
+    <com.mango.artsparkxml.CanvasView
+        android:id="@+id/canvasView"
+        android:layout_width="400sp"
+        android:layout_height="400sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20sp"
+        android:layout_centerInParent="true" />/>
+
+    <View
+        android:layout_width="400sp"
+        android:layout_height="10dp"
+        android:layout_below="@id/canvasView"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shadow_down" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addButton"
+        android:id="@+id/addElementButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -77,5 +77,4 @@
         app:srcCompat="@android:drawable/ic_menu_add"
 
         />
-
 </RelativeLayout>

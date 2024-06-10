@@ -2,6 +2,7 @@ package com.mango.artsparkxml;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
     private android.widget.ImageButton ImageButton;
     ImageButton btnBack = (ImageButton);
     TextView moodboardTitle;
+    ImageButton editButtton = (ImageButton);
 
     CardItem cardItem;
     String moodboardId;
@@ -35,6 +37,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         // Instantiate
         btnBack = findViewById(R.id.backButton);
         moodboardTitle = findViewById(R.id.moodboardTitle);
+        editButtton = findViewById(R.id.artSparkMoodBoardIcon);
 
         // Fetch data that is passed from Moodboard Menu
         Intent intent = getIntent();
@@ -62,7 +65,15 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         btnBack.setOnClickListener(this);
 
         // set the edit button to goes to editing moodboard activity with the intent list of all images?
-
+        editButtton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Moodboard1.this, EditingMoodboardActivity.class);
+                intent.putExtra("moodboardId", moodboardId);
+                intent.putExtra("moodboardTitle", title);
+                startActivity(intent);
+            }
+        });
     }
 
     private CardItem loadMoodboardById(String id) {
