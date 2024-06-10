@@ -1,8 +1,11 @@
 package com.mango.artsparkxml.Model;
 
-    public class ToDoModel {
+import android.graphics.Bitmap;
+
+public class ToDoModel {
     private int id, status;
     private String task;
+    private Bitmap image;
 
     public int getId() {
         return id;

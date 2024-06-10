@@ -62,6 +62,7 @@
         android:inputType="text"
         android:textColorHint="@color/yellow"
         android:background="@drawable/border"
+        android:maxLength="10"
         />
 
     <Button

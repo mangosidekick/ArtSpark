@@ -2,6 +2,7 @@ package com.mango.artsparkxml.Model;
 
 import android.graphics.Bitmap;
 
+
 import java.io.ByteArrayOutputStream;
 
 public class ImageModel {
@@ -102,6 +103,22 @@ public class ImageModel {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
+    }
+
+
+public class ImageModel {
+    private Bitmap image;
+
+    public ImageModel(Bitmap image) {
+        this.image = image;
+    }
+
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
 }
