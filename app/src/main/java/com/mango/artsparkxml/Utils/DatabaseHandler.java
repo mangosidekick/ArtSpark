@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.mango.artsparkxml.Model.ImageModel;
+import com.mango.artsparkxml.Model.ProfileImageModel;
 import com.mango.artsparkxml.Model.ToDoModel;
 
 import java.io.ByteArrayOutputStream;
@@ -58,7 +60,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private SQLiteDatabase db;
 
-    private SQLiteDatabase db;
     private ByteArrayOutputStream byteArrayOutputStream;
     private byte[] byteImage;
     private static String CreateTableQuery = "Create table ProfileUser(image BLOB)";
@@ -71,7 +72,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TODO_TABLE);
-
         db.execSQL(CREATE_MOODBOARD_TABLE);
         db.execSQL(CREATE_MOODBOARD_IMAGE_TABLE);
 
@@ -99,7 +99,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //image stuff
 
-    public void storeData(ImageModel imageModel){
+    public void storeData(ProfileImageModel imageModel){
         SQLiteDatabase database = this.getWritableDatabase();
         Bitmap bitmapImage = imageModel.getImage();
 
@@ -218,9 +218,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void insertImage(String moodboardId, ImageModel imageModel){
         ContentValues cv = new ContentValues();
         cv.put(IMAGE_MOODBOARD_ID, moodboardId);
+        Log.d("moodboardIdDB:", moodboardId);
         cv.put(URI, imageModel.getUri());
+        Log.d("uriDB:", imageModel.getUri());
         cv.put(IMAGE, imageModel.getImageByteArray());
+        Log.d("bytearrayDB:", String.valueOf(imageModel.getImageByteArray()));
         cv.put(POINT_X, imageModel.getX());
+        Log.d("pointXDB:", String.valueOf(imageModel.getX()));
         cv.put(POINT_Y, imageModel.getY());
         cv.put(SCALE_X, imageModel.getScaleX());
         cv.put(SCALE_Y, imageModel.getScaleX());

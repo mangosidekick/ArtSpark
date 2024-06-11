@@ -49,6 +49,7 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
         canvasView = findViewById(R.id.canvasView);
 
         dbHandler = new DatabaseHandler(this);
+        dbHandler.openDatabase();
 
         Intent intent = getIntent();
         moodboardId = intent.getStringExtra("moodboardId");
@@ -120,7 +121,7 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
             Uri imageUri = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                canvasView.addImage(bitmap, imageUri.toString());
+                canvasView.addImage(bitmap, imageUri.toString(), 0,0,1,1);
                 saveMoodboard();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -141,7 +142,7 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(imageData.getUri()));
                 imageData.setBitmap(bitmap);
-                canvasView.addImage(bitmap, imageData.getUri());
+                canvasView.addImage(bitmap, imageData.getUri(), 0,0,1,1);
             } catch (IOException e) {
                 e.printStackTrace();
             }

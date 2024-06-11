@@ -1,6 +1,7 @@
 package com.mango.artsparkxml.Model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 
 import java.io.ByteArrayOutputStream;
@@ -16,7 +17,8 @@ public class ImageModel {
     private float scaleX;
     private float scaleY;
 
-    public ImageModel() {}
+    public ImageModel() {
+    }
 
     public ImageModel(String uri, float x, float y, float scaleX, float scaleY) {
         this.uri = uri;
@@ -31,7 +33,7 @@ public class ImageModel {
         return this.id;
     }
 
-    public void setId(long id){
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -40,7 +42,7 @@ public class ImageModel {
         return this.uri;
     }
 
-    public void setUri(String uri){
+    public void setUri(String uri) {
         this.uri = uri;
     }
 
@@ -51,6 +53,7 @@ public class ImageModel {
 
     public void setImageByteArray(byte[] imageByteArray) {
         this.imageByteArray = imageByteArray;
+        this.bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
     }
 
     // Getter and Setter for Bitmap
@@ -103,22 +106,6 @@ public class ImageModel {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
-    }
-
-
-public class ImageModel {
-    private Bitmap image;
-
-    public ImageModel(Bitmap image) {
-        this.image = image;
-    }
-
-    public Bitmap getImage() {
-        return image;
-    }
-
-    public void setImage(Bitmap image) {
-        this.image = image;
     }
 
 }

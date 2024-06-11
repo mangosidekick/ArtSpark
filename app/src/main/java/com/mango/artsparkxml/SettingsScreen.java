@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mango.artsparkxml.Model.ImageModel;
+import com.mango.artsparkxml.Model.ProfileImageModel;
 import com.mango.artsparkxml.Utils.DatabaseHandler;
 
 import androidx.activity.EdgeToEdge;
@@ -160,7 +161,7 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
     //store image
     private void storeImage(){
         if (uploadImage.getDrawable() != null && bitmapImage != null){
-            dbHelper.storeData(new ImageModel(bitmapImage));
+            dbHelper.storeData(new ProfileImageModel(bitmapImage));
         }else{
             Toast.makeText(this, "Please enter image", Toast.LENGTH_SHORT).show();
         }

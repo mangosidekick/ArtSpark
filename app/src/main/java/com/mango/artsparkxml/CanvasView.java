@@ -21,6 +21,7 @@ import java.util.List;
 
 public class CanvasView extends View {
     private List<ImageModel> images = new ArrayList<>();
+    private Paint paint = new Paint();
     private Matrix matrix = new Matrix();
     private Matrix savedMatrix = new Matrix();
     private float[] matrixValues = new float[9];
@@ -43,12 +44,16 @@ public class CanvasView extends View {
         super(context, attrs);
     }
 
-    public void addImage(Bitmap bitmap, String uri) {
+    public void addImage(Bitmap bitmap, String uri, float pointX, float pointY, float scaleX, float scaleY) {
         ImageModel imageData = new ImageModel();
         imageData.setBitmap(bitmap);
         imageData.setUri(uri);
+        imageData.setX(pointX);
+        imageData.setY(pointY);
+        imageData.setScaleX(scaleX);
+        imageData.setScaleY(scaleY);
         images.add(imageData);
-        invalidate();
+        invalidate(); //trigger redraw
     }
 
     public List<ImageModel> getImages() {
@@ -59,20 +64,16 @@ public class CanvasView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // save the current state of the canvas before,
-        // to draw the background of the canvas
-        canvas.save();
-
         // DEFAULT color of the canvas
         int backgroundColor = Color.WHITE;
         canvas.drawColor(backgroundColor);
 
         for (ImageModel imageData : images) {
-            matrix.reset();
-            matrix.postScale(imageData.getScaleX(), imageData.getScaleY());
-            matrix.postTranslate(imageData.getX(), imageData.getY());
-
-            canvas.drawBitmap(imageData.getBitmap(), matrix, null);
+            canvas.save();
+            canvas.translate(imageData.getX(), imageData.getY());
+            canvas.scale(imageData.getScaleX(), imageData.getScaleY());
+            canvas.drawBitmap(imageData.getBitmap(), 0, 0, paint);
+            canvas.restore();
         }
     }
 
