@@ -114,6 +114,7 @@
         android:layout_marginBottom="97sp"
         >
         <ImageView
+            android:id="@+id/profile_image"
             android:layout_width="150sp"
             android:layout_height="150sp"
             android:background="@drawable/mouzart_face"/>

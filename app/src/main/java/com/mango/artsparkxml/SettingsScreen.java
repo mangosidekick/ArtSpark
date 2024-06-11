@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mango.artsparkxml.Model.ProfileImageModel;
 import com.mango.artsparkxml.Utils.DatabaseHandler;
 
 import androidx.activity.EdgeToEdge;
@@ -86,6 +87,13 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        changeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storeImage();
+            }
+        });
+
         // set user as the saved username
         SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
         String name = sharedpreferences.getString(USERNAME_KEY, "user");
@@ -143,6 +151,14 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
 
                 Toast.makeText(this, "Name has been changed", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    public void storeImage(){
+        if(uploadImage.getDrawable() != null && bitmapImage != null){
+            dbHelper.storeData(new ProfileImageModel(bitmapImage));
+        }else{
+            Toast.makeText(this, "No image selected!", Toast.LENGTH_SHORT).show();
         }
     }
 }
