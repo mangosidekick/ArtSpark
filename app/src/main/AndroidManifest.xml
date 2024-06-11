@@ -29,6 +29,9 @@
             android:name=".Moodboard1"
             android:exported="false" />
         <activity
+            android:name=".EditingMoodboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".GreetingScreen"
             android:exported="true" />
         <activity
