@@ -232,18 +232,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // update image: move, scale
-    public void updateImage(String imageId, float pointX, float pointY, float scaleX, float scaleY) {
+    public void updateImage(long imageId, float pointX, float pointY, float scaleX, float scaleY) {
         ContentValues cv = new ContentValues();
         cv.put(POINT_X, pointX);
         cv.put(POINT_Y, pointY);
         cv.put(SCALE_X, scaleX);
         cv.put(SCALE_Y, scaleY);
-        db.update(MOODBOARD_IMAGE_TABLE, cv, ID + "=?", new String[] {imageId});
+        db.update(MOODBOARD_IMAGE_TABLE, cv, ID + "=?", new String[]{String.valueOf(imageId)});
     }
 
     // delete image
     public void deleteImage(String imageId){
-        db.delete(MOODBOARD_IMAGE_TABLE, ID + "=?", new String[] {imageId});
+        db.delete(MOODBOARD_IMAGE_TABLE, ID + "=?", new String[]{String.valueOf(imageId)});
+    }
+
+    // delete all image associated with moodboard
+    public void deleteImagesForMoodboard(String moodboardId) {
+        db.delete(MOODBOARD_IMAGE_TABLE, IMAGE_MOODBOARD_ID + "=?", new String[]{String.valueOf(moodboardId)});
     }
 
 }

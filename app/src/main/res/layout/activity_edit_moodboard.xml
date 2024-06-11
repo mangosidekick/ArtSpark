@@ -37,7 +37,8 @@
         android:layout_marginTop="6dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/icon"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        android:onClick="onBackButtonClicked" />
 
     <ImageButton
         android:id="@+id/saveButton"
@@ -47,7 +48,8 @@
         android:layout_alignParentRight="true"
         android:background="@android:color/transparent"
         android:contentDescription="@string/icon"
-        app:srcCompat="?attr/actionModeShareDrawable"/>
+        app:tint="@color/black"
+        app:srcCompat="@android:drawable/ic_menu_save" />
 
     <com.mango.artsparkxml.CanvasView
         android:id="@+id/canvasView"

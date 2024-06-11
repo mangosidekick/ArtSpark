@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -25,7 +26,7 @@ import com.mango.artsparkxml.Utils.DatabaseHandler;
 import java.io.IOException;
 import java.util.List;
 
-public class EditingMoodboardActivity extends AppCompatActivity implements View.OnClickListener {
+public class EditingMoodboardActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int PERMISSION_REQUEST_CODE = 100;
@@ -36,6 +37,7 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
 
     FloatingActionButton uploadButton;
     ImageButton btnBack;
+    ImageButton btnSave;
     TextView moodboardTitle;
     private CanvasView canvasView;
 
@@ -45,6 +47,7 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_edit_moodboard);
 
         btnBack = findViewById(R.id.backButton);
+        btnSave = findViewById(R.id.saveButton);
         moodboardTitle = findViewById(R.id.moodboardTitle);
         canvasView = findViewById(R.id.canvasView);
 
@@ -75,6 +78,27 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
                 }
             }
         });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveMoodboard();
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveMoodboard();
+        Log.d("onPause:", "saving");
     }
 
     private boolean checkPermission() {
@@ -131,8 +155,17 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
     // different from the teacher
 
     private void saveMoodboard() {
+        dbHandler.deleteImagesForMoodboard(moodboardId); // Clear existing entries
         for (ImageModel imageData : canvasView.getImages()) {
             dbHandler.insertImage(moodboardId, imageData);
+        }
+    }
+
+    // Don't know why this is not working hhh
+    private void updateMoodboard() {
+        List<ImageModel> images = canvasView.getImages();
+        for (ImageModel imageData : images) {
+            dbHandler.updateImage(imageData.getId(), imageData.getX(), imageData.getY(), imageData.getScaleX(), imageData.getScaleY());
         }
     }
 
@@ -142,17 +175,11 @@ public class EditingMoodboardActivity extends AppCompatActivity implements View.
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(imageData.getUri()));
                 imageData.setBitmap(bitmap);
-                canvasView.addImage(bitmap, imageData.getUri(), 0,0,1,1);
+                canvasView.addImage(bitmap, imageData.getUri(), imageData.getX(),imageData.getY(),imageData.getScaleX(),imageData.getScaleY());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == btnBack) { // For the back button so it goes back to the last screen
-            finish();
-        }
-    }
 }

@@ -1,7 +1,5 @@
 package com.mango.artsparkxml;
 
-import static com.mango.artsparkxml.R.id.bottomNavigationView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
