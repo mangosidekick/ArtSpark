@@ -15,11 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.mango.artsparkxml.Model.ImageModel;
 import com.mango.artsparkxml.Utils.DatabaseHandler;
 
 import androidx.activity.EdgeToEdge;
@@ -31,7 +29,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class SettingsScreen extends AppCompatActivity implements View.OnClickListener {
     ImageButton backButtonSettings, changeTextButton;
@@ -88,14 +85,6 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
-        changeIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                storeImage();
-            }
-        });
-
-
 
         // set user as the saved username
         SharedPreferences sharedpreferences = getApplicationContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
@@ -154,15 +143,6 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
 
                 Toast.makeText(this, "Name has been changed", Toast.LENGTH_SHORT).show();
             }
-        }
-    }
-
-    //store image
-    private void storeImage(){
-        if (uploadImage.getDrawable() != null && bitmapImage != null){
-            dbHelper.storeData(new ImageModel(bitmapImage));
-        }else{
-            Toast.makeText(this, "Please enter image", Toast.LENGTH_SHORT).show();
         }
     }
 }
