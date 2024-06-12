@@ -94,7 +94,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                // Going from Moodboard menu to MoodboardEditing
+                // Going from Moodboard menu to Moodboard1
                 CardItem selectedCardItem = cardList.get(position);
                 Intent intent = new Intent(MoodboardMenu.this, Moodboard1.class);
                 intent.putExtra("moodboardId", selectedCardItem.getId());
@@ -123,6 +123,19 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         });
 
         // Update visibility based on initial data load
+        updateMoodboardNoticeVisibility();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Refresh cardList
+        cardList.clear();
+        cardList = loadMoodboards();
+
+        // Notify the adapter
+        adapter.notifyDataSetChanged();
         updateMoodboardNoticeVisibility();
     }
 
@@ -174,7 +187,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     }
 
     private void saveMoodboard(CardItem cardItem) {
-        dbHandler.insertMoodboard(cardItem.getId(), cardItem.getTitle(), new byte[0]);
+        dbHandler.insertMoodboard(cardItem.getId(), cardItem.getTitle(), cardItem.getThumbnail());
     }
 
     @Override

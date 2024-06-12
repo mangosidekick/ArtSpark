@@ -10,6 +10,7 @@ public class CardItem {
     public CardItem(String id, String title) {
         this.id = id;
         this.title = title;
+        this.thumbnail = new byte[0];
     }
 
     public String getId() {
