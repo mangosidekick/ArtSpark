@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.mango.artsparkxml.Model.CardItem;
+
 import java.util.List;
 
 public class MyCardAdapter extends BaseAdapter {

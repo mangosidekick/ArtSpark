@@ -3,6 +3,7 @@ package com.mango.artsparkxml.Model;
 import android.graphics.Bitmap;
 
 public class ProfileImageModel {
+
     private Bitmap image;
 
     public ProfileImageModel(Bitmap image) {
@@ -15,5 +16,7 @@ public class ProfileImageModel {
 
     public void setImage(Bitmap image) {
         this.image = image;
+
     }
+
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="50sp"
+    android:background="@color/dirtwhite"
+    tools:context=".Moodboard1">
+
+    <View
+        android:id="@+id/upperNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:background="@color/yellow"></View>
+
+    <TextView
+        android:id="@+id/moodboardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/concert_one"
+        android:text="@string/boardnumber1"
+        android:textSize="25sp"
+        android:textColor="@color/dirtwhite"
+        android:visibility="visible"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/icon"
+        app:srcCompat="?attr/actionModeCloseDrawable"
+        android:onClick="onBackButtonClicked" />
+
+    <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/icon"
+        app:tint="@color/black"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <com.mango.artsparkxml.CanvasView
+        android:id="@+id/canvasView"
+        android:layout_width="400sp"
+        android:layout_height="400sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20sp"
+        android:layout_centerInParent="true" />/>
+
+    <View
+        android:layout_width="400sp"
+        android:layout_height="10dp"
+        android:layout_below="@id/canvasView"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shadow_down" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addElementButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="40sp"
+        android:clickable="true"
+        android:contentDescription="@string/icon"
+        app:srcCompat="@android:drawable/ic_menu_add"
+
+        />
+</RelativeLayout>
