@@ -63,8 +63,6 @@ public class EditingMoodboardActivity extends AppCompatActivity {
 
             moodboardTitle.setText(title);
 
-            // set the image as the thumbnail
-
         }
 
         uploadButton = findViewById(R.id.addElementButton);

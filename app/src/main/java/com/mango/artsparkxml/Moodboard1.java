@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.mango.artsparkxml.Model.CardItem;
+import com.mango.artsparkxml.Utils.DatabaseHandler;
 
 public class Moodboard1 extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,7 +27,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
     String moodboardId;
     String title;
 
-    String MOODBOARD_KEY = "moodboards";
+    private DatabaseHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,9 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         btnBack = findViewById(R.id.backButton);
         moodboardTitle = findViewById(R.id.moodboardTitle);
         editButtton = findViewById(R.id.artSparkMoodBoardIcon);
+
+        dbHandler = new DatabaseHandler(this);
+        dbHandler.openDatabase();
 
         // Fetch data that is passed from Moodboard Menu
         Intent intent = getIntent();
@@ -77,21 +81,8 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
     }
 
     private CardItem loadMoodboardById(String id) {
-        SharedPreferences sharedPreferences = getSharedPreferences(MOODBOARD_KEY, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(id, null);
-        return gson.fromJson(json, CardItem.class);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        saveMoodboard(cardItem);
-    }
-
-    private void saveMoodboard(CardItem cardItem) {
-        // Save the moodboard to storage
-        // Example: SharedPreferences, Database, etc.
+        CardItem selectedCardItem = dbHandler.getMoodboardById(id);
+        return selectedCardItem;
     }
 
     @Override

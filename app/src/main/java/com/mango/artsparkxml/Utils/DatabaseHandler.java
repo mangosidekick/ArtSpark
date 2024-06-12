@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.mango.artsparkxml.Model.CardItem;
 import com.mango.artsparkxml.Model.ImageModel;
 import com.mango.artsparkxml.Model.ProfileImageModel;
 import com.mango.artsparkxml.Model.ToDoModel;
@@ -36,10 +37,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //moodboard table
     private static final String MOODBOARD_TABLE = "moodboard";
     private static final String MOODBOARD_ID = "id";
-    private static final String MOODBOARD_TITLE = "name";
+    private static final String MOODBOARD_TITLE = "title";
+    private static final String MOODBOARD_THUMBNAIL = "thumbnail";
     private static final String CREATE_MOODBOARD_TABLE = "CREATE TABLE "
             + MOODBOARD_TABLE + "(" + MOODBOARD_ID + " TEXT PRIMARY KEY, "
-            + MOODBOARD_TITLE + " TEXT" + ")";
+            + MOODBOARD_TITLE + " TEXT, "
+            + MOODBOARD_THUMBNAIL + " BLOB)";
 
     // moodboard image table
     private static final String MOODBOARD_IMAGE_TABLE = "moodboard_image";
@@ -182,11 +185,65 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // MOODBOARD
-    public void insertMoodboard(String id, String name) {
+    public void insertMoodboard(String id, String name, byte[] byteImage) {
         ContentValues values = new ContentValues();
         values.put(MOODBOARD_ID, id);
         values.put(MOODBOARD_TITLE, name);
+        values.put(MOODBOARD_THUMBNAIL, byteImage);
         db.insert(MOODBOARD_TABLE, null, values);
+    }
+
+    public List<CardItem> getAllMoodboards() {
+        List<CardItem> moodboardList = new ArrayList<>();
+        Cursor cur = null;
+        db.beginTransaction();
+        try{
+            cur = db.query(MOODBOARD_TABLE, null, null, null, null, null, null, null);
+            if(cur != null){
+                if(cur.moveToFirst()){
+                    do{
+                        CardItem moodboard = new CardItem();
+                        moodboard.setId(cur.getString(cur.getColumnIndex(MOODBOARD_ID)));
+                        moodboard.setTitle(cur.getString(cur.getColumnIndex(MOODBOARD_TITLE)));
+                        moodboard.setThumbnail(cur.getBlob(cur.getColumnIndex(MOODBOARD_THUMBNAIL)));
+                        moodboardList.add(moodboard);
+                    }while (cur.moveToNext());
+                }
+            }
+        }
+        finally {
+            db.endTransaction();
+            cur.close();
+        }
+        return moodboardList;
+    }
+
+    public CardItem getMoodboardById(String moodboardId) {
+        Cursor cursorMoodboard = db.query(
+                MOODBOARD_TABLE,
+                new String[]{MOODBOARD_ID, MOODBOARD_TITLE, MOODBOARD_THUMBNAIL},
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(moodboardId)},
+                null, null, null, null);
+
+        if (cursorMoodboard != null) {
+            cursorMoodboard.moveToFirst();
+        } else {
+            return null;
+        }
+
+        String id = cursorMoodboard.getString(cursorMoodboard.getColumnIndex(MOODBOARD_ID));
+        String title = cursorMoodboard.getString(cursorMoodboard.getColumnIndex(MOODBOARD_TITLE));
+        byte[] thumbnail = cursorMoodboard.getBlob(cursorMoodboard.getColumnIndex(MOODBOARD_THUMBNAIL));
+
+        if (cursorMoodboard != null) {
+            cursorMoodboard.close();
+        }
+
+        CardItem moodboard = new CardItem(id, title);
+        moodboard.setThumbnail(thumbnail);
+
+        return moodboard;
     }
 
     public List<ImageModel> getImagesForMoodboard(String moodboardId) {

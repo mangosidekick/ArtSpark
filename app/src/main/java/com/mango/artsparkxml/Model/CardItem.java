@@ -3,6 +3,9 @@ package com.mango.artsparkxml.Model;
 public class CardItem {
     private String id;
     private String title;
+    private byte[] thumbnail;
+
+    public CardItem() {}
 
     public CardItem(String id, String title) {
         this.id = id;
@@ -23,6 +26,14 @@ public class CardItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public byte[] getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(byte[] thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
 }

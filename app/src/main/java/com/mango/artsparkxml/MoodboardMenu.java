@@ -1,15 +1,12 @@
 package com.mango.artsparkxml;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ExpandableListAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -22,14 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
 import com.mango.artsparkxml.Model.CardItem;
+import com.mango.artsparkxml.Utils.DatabaseHandler;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class MoodboardMenu extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +35,8 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     MyCardAdapter adapter;
     List<CardItem> cardList;
     RelativeLayout moodboardNotice;
+
+    private DatabaseHandler dbHandler;
 
     String MOODBOARD_KEY = "moodboards";
     int MOODBOARD_LIMIT = 18;
@@ -74,6 +71,9 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
                 return false;
             }
         });
+
+        dbHandler = new DatabaseHandler(this);
+        dbHandler.openDatabase();
 
         moodboardNotice = findViewById(R.id.moodboard_notice);
 
@@ -128,17 +128,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     }
 
     private List<CardItem> loadMoodboards() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(MOODBOARD_KEY, Context.MODE_PRIVATE);
-
-        Map<String, ?> allEntries = sharedPreferences.getAll();
-        List<CardItem> moodboards = new ArrayList<>();
-        Gson gson = new Gson();
-
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            String json = (String) entry.getValue();
-            CardItem moodboard = gson.fromJson(json, CardItem.class);
-            moodboards.add(moodboard);
-        }
+        List<CardItem> moodboards = dbHandler.getAllMoodboards();
 
         // Checking
         Log.d("MoodboardMenu", "MOODBOARD SIZE LOAD: " + moodboards.size());
@@ -185,12 +175,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     }
 
     private void saveMoodboard(CardItem cardItem) {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(MOODBOARD_KEY, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(cardItem);
-        editor.putString(cardItem.getId(), json);
-        editor.apply();
+        dbHandler.insertMoodboard(cardItem.getId(), cardItem.getTitle(), new byte[0]);
     }
 
     @Override
@@ -219,10 +204,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         cardList.remove(position);
 
         // Remove the moodboard from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(MOODBOARD_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(moodboard.getId());
-        editor.apply();
+        dbHandler.deleteMoodboard(moodboard.getId());
 
         // Notify the adapter about the removal
         adapter.notifyDataSetChanged();
