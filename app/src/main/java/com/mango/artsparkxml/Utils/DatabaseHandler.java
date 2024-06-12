@@ -33,12 +33,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //profile pic table
     private ByteArrayOutputStream byteArrayOutputStream;
     private byte[] byteImage;
-    private static final String PROFILE_TABLE = "Images";
+    private static final String PROFILE_TABLE = "images";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_IMAGE = "image";
 
-    private static final String CREATE_TABLE_IMAGE =
-            "CREATE TABLE " + PROFILE_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_IMAGE + " BLOB" + ")";
+    private static final String CREATE_TABLE_IMAGE = "CREATE TABLE " + PROFILE_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_IMAGE + " BLOB" + ")";
 
 
     public DatabaseHandler(Context context) {
@@ -76,21 +75,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         byteImage = byteArrayOutputStream.toByteArray();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", byteImage);
+        contentValues.put("image", byteImage);
 
-        long checkQuery = database.insert("PROFILE_TABLE", null, contentValues);
+        long checkQuery = database.insert(PROFILE_TABLE, null, contentValues);
         if (checkQuery != -1) {
-            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
             database.close();
         } else {
-            Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
     }
 
-
     public Cursor getUser() {
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery("Select * from PROFILE_TABLE", null);
+        Cursor cursor = database.rawQuery("Select * FROM images", null);
         return cursor;
     }
 

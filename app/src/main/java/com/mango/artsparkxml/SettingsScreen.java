@@ -138,7 +138,7 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
 
         } else if (v.getId() == R.id.changeTextButton) {
             if( TextUtils.isEmpty(userName.getText())) {
-                Toast.makeText(this, "Name has not been changed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Name has not been changed.", Toast.LENGTH_SHORT).show();
             } else {
                 String name = userName.getText().toString();
 
@@ -149,7 +149,7 @@ public class SettingsScreen extends AppCompatActivity implements View.OnClickLis
                 editor.putString(USERNAME_KEY, name);
                 editor.apply();
 
-                Toast.makeText(this, "Name has been changed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Name has been changed!", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -8,7 +8,8 @@
     android:background="@color/dirtwhite"
     android:fontFamily="@font/concert_one"
     android:layout_marginBottom="46sp"
-    tools:context=".GreetingScreen">
+    tools:context=".GreetingScreen"
+    >
 
     <TextView
         android:id="@+id/welcome"

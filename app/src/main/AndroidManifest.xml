@@ -26,7 +26,8 @@
             android:exported="false" />
         <activity
             android:name=".GreetingScreen"
-            android:exported="true" />
+            android:exported="true"
+            />
         <activity
             android:name=".WelcomeScreen"
             android:exported="true">

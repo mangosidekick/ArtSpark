@@ -1,5 +1,6 @@
 package com.mango.artsparkxml;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,18 +56,26 @@ public class GreetingScreen extends AppCompatActivity implements View.OnClickLis
         BtnEnter.setOnClickListener(this);
 
         //display icon
-        ImageView navImage = (ImageView) findViewById(R.id.profile_image);
+        ImageView navImage = findViewById(R.id.profile_image);
         DatabaseHandler dbHelper = new DatabaseHandler(this);
         Cursor cursor = dbHelper.getUser();
 
-        if (cursor.getCount() == 0){
-            Toast.makeText(this, "No image", Toast.LENGTH_SHORT).show();
-        }else{
-            while (cursor.moveToNext()){
-                byte[] imageByte = cursor.getBlob(0);
+        try {
+            cursor = dbHelper.getUser();
 
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
-                navImage.setImageBitmap(bitmap);
+            if (cursor != null && cursor.getCount() == 0) {
+                Toast.makeText(this, "No profile image found", Toast.LENGTH_SHORT).show();
+            } else {
+                while (cursor != null && cursor.moveToNext()) {
+                    byte[] imageByte = cursor.getBlob(cursor.getColumnIndex("image"));
+
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
+                    navImage.setImageBitmap(bitmap);
+                }
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
             }
         }
     }
