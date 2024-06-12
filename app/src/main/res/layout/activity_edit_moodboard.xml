@@ -77,6 +77,6 @@
         android:clickable="true"
         android:contentDescription="@string/icon"
         app:srcCompat="@android:drawable/ic_menu_add"
-
+        app:backgroundTint="@color/orange"
         />
 </RelativeLayout>

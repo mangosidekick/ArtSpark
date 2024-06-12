@@ -26,21 +26,11 @@
         android:background="@drawable/shadow_down" />
 
     <ImageButton
-        android:id="@+id/artSparkBurgerIcon"
-        android:layout_width="60sp"
-        android:layout_height="60sp"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
-        android:clickable="true"
-        android:contentDescription="@string/icon"
-        app:srcCompat="@drawable/artspark_burger_icon" />
-
-    <ImageButton
         android:id="@+id/artSparkMoodBoardIcon"
         android:layout_width="62sp"
         android:layout_height="62sp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="110sp"
+        android:layout_marginStart="25sp"
         android:background="@android:color/transparent"
         android:clickable="true"
         android:contentDescription="@string/icon"
