@@ -83,6 +83,7 @@ public class EditingMoodboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveMoodboard();
+                Toast.makeText(EditingMoodboardActivity.this, "Canvas state is saved", Toast.LENGTH_SHORT).show();
             }
         });
 
