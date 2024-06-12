@@ -38,7 +38,6 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
     private DatabaseHandler dbHandler;
 
-    String MOODBOARD_KEY = "moodboards";
     int MOODBOARD_LIMIT = 18;
 
     @Override

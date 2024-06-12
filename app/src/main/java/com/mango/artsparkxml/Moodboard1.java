@@ -2,11 +2,14 @@ package com.mango.artsparkxml;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +25,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
     ImageButton btnBack = (ImageButton);
     TextView moodboardTitle;
     ImageButton editButtton = (ImageButton);
+    ImageView moodboardThumbnail;
 
     CardItem cardItem;
     String moodboardId;
@@ -39,6 +43,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         btnBack = findViewById(R.id.backButton);
         moodboardTitle = findViewById(R.id.moodboardTitle);
         editButtton = findViewById(R.id.artSparkMoodBoardIcon);
+        moodboardThumbnail = findViewById(R.id.moodBoard);
 
         dbHandler = new DatabaseHandler(this);
         dbHandler.openDatabase();
@@ -60,6 +65,11 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
             moodboardTitle.setText(cardItem.getTitle());
 
             // set the image as the thumbnail
+            byte[] thumbnail = cardItem.getThumbnail();
+            if (thumbnail != null && thumbnail.length != 0) {
+                Bitmap imageBitmap = BitmapFactory.decodeByteArray(thumbnail, 0, thumbnail.length);
+                moodboardThumbnail.setImageBitmap(imageBitmap);
+            }
 
             Log.d("Moodboard1", "Loaded MOODBOARD_ID: " + cardItem.getId());
             Log.d("Moodboard1", "Loaded MOODBOARD_TITLE: " + cardItem.getTitle());
@@ -78,6 +88,22 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // refresh
+        cardItem = loadMoodboardById(moodboardId);
+        moodboardTitle.setText(cardItem.getTitle());
+
+        // set the image as the thumbnail
+        byte[] thumbnail = cardItem.getThumbnail();
+        if (thumbnail != null && thumbnail.length != 0) {
+            Bitmap imageBitmap = BitmapFactory.decodeByteArray(thumbnail, 0, thumbnail.length);
+            moodboardThumbnail.setImageBitmap(imageBitmap);
+        }
     }
 
     private CardItem loadMoodboardById(String id) {

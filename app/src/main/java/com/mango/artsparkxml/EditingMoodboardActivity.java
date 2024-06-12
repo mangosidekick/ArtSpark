@@ -23,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mango.artsparkxml.Model.ImageModel;
 import com.mango.artsparkxml.Utils.DatabaseHandler;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -81,7 +82,8 @@ public class EditingMoodboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveMoodboard();
-                Toast.makeText(EditingMoodboardActivity.this, "Canvas state is saved", Toast.LENGTH_SHORT).show();
+                saveCanvasAsPng();
+                Toast.makeText(EditingMoodboardActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -179,6 +181,20 @@ public class EditingMoodboardActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void saveCanvasAsPng() {
+        Bitmap bitmap = canvasView.getBitmap();
+        // save thumbnail in db
+        byte[] byteImage = getByteArrayFromBitmap(bitmap);
+        Log.d("ByteGeneratedBitmapCanvas", String.valueOf(byteImage));
+        dbHandler.updateMoodboardThumbnail(moodboardId, byteImage);
+    }
+
+    private byte[] getByteArrayFromBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
     }
 
 }

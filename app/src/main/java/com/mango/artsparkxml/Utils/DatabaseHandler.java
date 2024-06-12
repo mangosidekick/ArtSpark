@@ -246,6 +246,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return moodboard;
     }
 
+    public void updateMoodboardThumbnail(String moodboardId, byte[] byteImage) {
+        ContentValues cv = new ContentValues();
+        cv.put(MOODBOARD_THUMBNAIL, byteImage);
+        db.update(MOODBOARD_TABLE, cv, MOODBOARD_ID + "=?", new String[]{String.valueOf(moodboardId)});
+    }
+
     public List<ImageModel> getImagesForMoodboard(String moodboardId) {
         List<ImageModel> images = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();

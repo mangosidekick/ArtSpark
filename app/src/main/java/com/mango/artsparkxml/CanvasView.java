@@ -173,4 +173,12 @@ public class CanvasView extends View {
             return true;
         }
     }
+
+    public Bitmap getBitmap() {
+        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        draw(canvas);
+        return bitmap;
+    }
+
 }
