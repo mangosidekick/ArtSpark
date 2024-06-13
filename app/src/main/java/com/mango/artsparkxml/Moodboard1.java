@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.mango.artsparkxml.Model.CardItem;
 import com.mango.artsparkxml.Utils.DatabaseHandler;
@@ -24,7 +25,8 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
     private android.widget.ImageButton ImageButton;
     ImageButton btnBack = (ImageButton);
     TextView moodboardTitle;
-    ImageButton editButtton = (ImageButton);
+    private com.google.android.material.floatingactionbutton.FloatingActionButton FloatingActionButton;
+    FloatingActionButton editButton = (FloatingActionButton);
     ImageView moodboardThumbnail;
 
     CardItem cardItem;
@@ -42,7 +44,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         // Instantiate
         btnBack = findViewById(R.id.backButton);
         moodboardTitle = findViewById(R.id.moodboardTitle);
-        editButtton = findViewById(R.id.artSparkMoodBoardIcon);
+        editButton = findViewById(R.id.artSparkMoodBoardIcon);
         moodboardThumbnail = findViewById(R.id.moodBoard);
 
         dbHandler = new DatabaseHandler(this);
@@ -79,7 +81,7 @@ public class Moodboard1 extends AppCompatActivity implements View.OnClickListene
         btnBack.setOnClickListener(this);
 
         // set the edit button to goes to editing moodboard activity with the intent list of all images?
-        editButtton.setOnClickListener(new View.OnClickListener() {
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Moodboard1.this, EditingMoodboardActivity.class);

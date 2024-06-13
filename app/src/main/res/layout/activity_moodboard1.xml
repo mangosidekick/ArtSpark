@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="50sp"
     android:background="@color/dirtwhite"
+    android:layout_marginBottom="46sp"
     tools:context=".Moodboard1">
 
     <ImageView
@@ -25,16 +25,19 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/shadow_down" />
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/artSparkMoodBoardIcon"
         android:layout_width="62sp"
         android:layout_height="62sp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="25sp"
-        android:background="@android:color/transparent"
+        android:layout_margin="30sp"
         android:clickable="true"
         android:contentDescription="@string/icon"
-        app:srcCompat="@drawable/artspark_moodboard_icon" />
+        app:srcCompat="@drawable/artspark_moodboard_icon"
+        android:background="@color/dirtwhite"
+        android:backgroundTint="@color/orange"
+        />
 
 
     <View
@@ -65,6 +68,7 @@
         android:layout_marginTop="6dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/icon"
+        app:tint="@color/green"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
 </RelativeLayout>

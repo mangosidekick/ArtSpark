@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="50sp"
     android:background="@color/dirtwhite"
     tools:context=".Moodboard1">
 
@@ -37,6 +36,7 @@
         android:layout_marginTop="6dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/icon"
+        app:tint="@color/green"
         app:srcCompat="?attr/actionModeCloseDrawable"
         android:onClick="onBackButtonClicked" />
 
@@ -48,7 +48,7 @@
         android:layout_alignParentRight="true"
         android:background="@android:color/transparent"
         android:contentDescription="@string/icon"
-        app:tint="@color/black"
+        app:tint="@color/white"
         app:srcCompat="@android:drawable/ic_menu_save" />
 
     <com.mango.artsparkxml.CanvasView
@@ -68,15 +68,14 @@
         android:background="@drawable/shadow_down" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:contentDescription="@string/icon"
         android:id="@+id/addElementButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="40sp"
         android:clickable="true"
-        android:contentDescription="@string/icon"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        app:backgroundTint="@color/orange"
-        />
+        android:layout_margin="32dp"
+        android:backgroundTint="@color/orange"
+        android:src="@drawable/baseline_add"/>
 </RelativeLayout>
