@@ -17,6 +17,14 @@
         android:descendantFocusability="blocksDescendants">
 
         <!-- Add ImageView for thumbnail of the board -->
+        <ImageView
+            android:id="@+id/boardImage1"
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+            android:layout_centerVertical="true"
+            android:layout_margin="5sp"
+            app:srcCompat="@drawable/artspark_moodboard_board" />
+
         <TextView
             android:id="@+id/boardText1"
             android:layout_width="wrap_content"
