@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import com.mango.artsparkxml.Utils.DatabaseHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class EditingMoodboardActivity extends AppCompatActivity {
@@ -145,7 +147,9 @@ public class EditingMoodboardActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 canvasView.addImage(bitmap, imageUri.toString(), 0,0,1,1);
                 saveMoodboard();
             } catch (IOException e) {
@@ -174,10 +178,11 @@ public class EditingMoodboardActivity extends AppCompatActivity {
         List<ImageModel> images = dbHandler.getImagesForMoodboard(moodboardId);
         for (ImageModel imageData : images) {
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(imageData.getUri()));
+                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(imageData.getUri()));
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageData.getImageByteArray(), 0, imageData.getImageByteArray().length);
                 imageData.setBitmap(bitmap);
                 canvasView.addImage(bitmap, imageData.getUri(), imageData.getX(),imageData.getY(),imageData.getScaleX(),imageData.getScaleY());
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
