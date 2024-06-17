@@ -168,7 +168,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
             Log.d("MoodboardMenu", "MOODBOARD SIZE: " + cardList);
 
             // Refresh the GridView
-            adapter.notifyDataSetChanged();
+            refreshGridView();
             updateMoodboardNoticeVisibility();
         }
     }
@@ -216,5 +216,11 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         } else {
             moodboardNotice.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void refreshGridView(){
+        adapter.notifyDataSetChanged();
+        gridView.invalidateViews();
+        gridView.setAdapter(adapter);
     }
 }
