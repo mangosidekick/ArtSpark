@@ -1,11 +1,14 @@
 package com.mango.artsparkxml;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mango.artsparkxml.Model.CardItem;
@@ -49,8 +52,16 @@ public class MyCardAdapter extends BaseAdapter {
         }
 
         TextView textView = convertView.findViewById(R.id.boardText1);
+        ImageView imageView = convertView.findViewById(R.id.boardImage1);
+
         CardItem cardItem = cardList.get(position);
         textView.setText(cardItem.getTitle());
+
+        byte[] thumbnail = cardItem.getThumbnail();
+        if (thumbnail != null && thumbnail.length != 0) {
+            Bitmap imageBitmap = BitmapFactory.decodeByteArray(thumbnail, 0, thumbnail.length);
+            imageView.setImageBitmap(imageBitmap);
+        }
 
         return convertView;
     }

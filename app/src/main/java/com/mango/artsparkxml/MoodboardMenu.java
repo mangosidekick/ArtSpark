@@ -38,7 +38,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
     private DatabaseHandler dbHandler;
 
-    int MOODBOARD_LIMIT = 18;
+    int MOODBOARD_LIMIT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +150,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     private void addNewBoard() {
         // check limit
         if ((cardList.size() + 1) > MOODBOARD_LIMIT) {
-            Toast.makeText(this, "Moodboard limit is 18!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Moodboard limit is 100!", Toast.LENGTH_SHORT).show();
         } else {
             String newBoardId = UUID.randomUUID().toString();
             int newBoardTitleCounter = cardList.size() + 1;
@@ -168,7 +168,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
             Log.d("MoodboardMenu", "MOODBOARD SIZE: " + cardList);
 
             // Refresh the GridView
-            adapter.notifyDataSetChanged();
+            refreshGridView();
             updateMoodboardNoticeVisibility();
         }
     }
@@ -216,5 +216,11 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
         } else {
             moodboardNotice.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void refreshGridView(){
+        adapter.notifyDataSetChanged();
+        gridView.invalidateViews();
+        gridView.setAdapter(adapter);
     }
 }
