@@ -38,7 +38,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
 
     private DatabaseHandler dbHandler;
 
-    int MOODBOARD_LIMIT = 18;
+    int MOODBOARD_LIMIT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +150,7 @@ public class MoodboardMenu extends AppCompatActivity implements View.OnClickList
     private void addNewBoard() {
         // check limit
         if ((cardList.size() + 1) > MOODBOARD_LIMIT) {
-            Toast.makeText(this, "Moodboard limit is 18!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Moodboard limit is 100!", Toast.LENGTH_SHORT).show();
         } else {
             String newBoardId = UUID.randomUUID().toString();
             int newBoardTitleCounter = cardList.size() + 1;
